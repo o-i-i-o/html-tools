@@ -1,0 +1,25 @@
+[package]
+name = "password-gen"
+version = "0.1.0"
+description = "随机密码生成器"
+edition = "2024"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+# default-features = false 后显式列出所需特性，禁用以下默认特性以减小二进制：
+# - dynamic-acl：纯前端不调用 Tauri 命令，无需运行时动态注册 ACL 权限
+# - x11：本项目在 Linux 仅支持 Wayland（通过 gtk 的 wayland 后端）；
+#   链路 tauri -> tauri-runtime-wry -> wry/tao 均以 default-features=false 引入，
+#   移除 x11 feature 后整条链路都不会链接 gdkx11-sys / x11-dl
+# - compression：前端仅 ~36KB，brotli 解压器代码体积大于压缩收益，禁用移除 brotli 依赖
+# - dbus：纯前端不用桌面通知/应用菜单集成，禁用移除 tao 的 dbus 依赖
+[dependencies]
+tauri = { version = "2", default-features = false, features = ["wry", "common-controls-v6"] }
+
+[profile.release]
+opt-level = "z"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
