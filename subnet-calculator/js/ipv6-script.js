@@ -33,7 +33,7 @@
     v6TLinkLocal:   { zh: '链路本地地址', en: 'Link-Local' },
     v6TUla:         { zh: '唯一本地地址', en: 'Unique Local (ULA)' },
     v6TMulticast:   { zh: '组播地址', en: 'Multicast' },
-    v6TDoc:         { zh: '文档示例地址', en: 'Documentation' },
+    v6TDoc:         { zh: '示例地址', en: 'Documentation' },
     v6T6to4:        { zh: '6to4 过渡地址', en: '6to4 Transition' },
     v6TIetf:        { zh: '特殊用途地址', en: 'Special (IETF Assignments)' },
     v6TGlobal:      { zh: '全局单播地址', en: 'Global Unicast' },
