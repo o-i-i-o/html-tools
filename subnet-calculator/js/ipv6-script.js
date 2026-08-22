@@ -22,6 +22,7 @@
     v6ResCompressed:   { zh: '压缩格式', en: 'Compressed' },
     v6ResNetwork:      { zh: '网络前缀', en: 'Network Prefix' },
     v6ResHost:         { zh: '主机标识符', en: 'Host Identifier' },
+    v6ResFirst:        { zh: '起始可用地址', en: 'First Address' },
     v6ResLast:         { zh: '结束可用地址', en: 'Last Address' },
     v6ResCount:        { zh: '地址总数', en: 'Total Addresses' },
     v6ResType:         { zh: '地址类型', en: 'Address Type' },
