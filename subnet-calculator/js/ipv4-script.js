@@ -10,46 +10,25 @@
 
   /* ---------- 页面文案（中英文） ---------- */
   registerI18n({
-    v4PanelParams:   { zh: 'IPv4 参数配置', en: 'IPv4 Parameters' },
-    v4IpLabel:       { zh: 'IP 地址', en: 'IP Address' },
-    v4OctetAria:     { zh: 'IP 地址第 {n} 段', en: 'IP octet {n}' },
+    v4IpLabel:       { zh: 'IPv4 地址', en: 'IPv4 Address' },
+    v4OctetAria:     { zh: 'IPv4 地址第 {n} 段', en: 'IPv4 octet {n}' },
     v4MaskLabel:     { zh: '子网掩码 / CIDR', en: 'Subnet Mask / CIDR' },
     v4MaskGridAria:  { zh: '子网掩码位图', en: 'Subnet mask bit map' },
     v4Invalid:       { zh: '请输入正确的 IPv4 地址（每段为 0 - 255 的数字）', en: 'Enter a valid IPv4 address (each octet 0-255)' },
 
     v4ResNetwork:    { zh: '网络地址', en: 'Network Address' },
     v4ResBroadcast:  { zh: '广播地址', en: 'Broadcast Address' },
-    v4ResFirst:      { zh: '起始可用 IP', en: 'First Host' },
-    v4ResLast:       { zh: '结束可用 IP', en: 'Last Host' },
+    v4ResFirst:      { zh: '起始可用地址', en: 'First Host' },
+    v4ResLast:       { zh: '结束可用地址', en: 'Last Host' },
     v4ResMask:       { zh: '子网掩码', en: 'Subnet Mask' },
     v4ResWildcard:   { zh: '反掩码', en: 'Wildcard Mask' },
-    v4ResUsable:     { zh: '可用主机数', en: 'Usable Hosts' },
-    v4ResClass:      { zh: 'IP 分类', en: 'IP Class' },
-
-    v4ClassA:        { zh: 'A 类', en: 'Class A' },
-    v4ClassB:        { zh: 'B 类', en: 'Class B' },
-    v4ClassC:        { zh: 'C 类', en: 'Class C' },
-    v4ClassD:        { zh: 'D 类（组播）', en: 'Class D (Multicast)' },
-    v4ClassE:        { zh: 'E 类（科研保留）', en: 'Class E (Reserved)' },
-    v4ClassLoopback: { zh: '环回地址（Loopback）', en: 'Loopback' },
-    v4ClassReserved: { zh: '保留地址', en: 'Reserved' },
+    v4ResUsable:     { zh: '可用地址数', en: 'Usable Addresses' },
   });
 
   /* ---------- 数值转换工具 ---------- */
   const ip2int = ([a, b, c, d]) => ((a << 24) | (b << 16) | (c << 8) | d) >>> 0;
   const int2ip = (n) => [n >>> 24, (n >>> 16) & 0xff, (n >>> 8) & 0xff, n & 0xff].join('.');
   const cidrToMask = (bits) => (bits === 0 ? 0 : (0xffffffff << (32 - bits)) >>> 0);
-
-  /* ---------- IP 地址分类（返回字典 key） ---------- */
-  const classify = (firstOctet) => {
-    if (firstOctet === 0) return 'v4ClassReserved';
-    if (firstOctet === 127) return 'v4ClassLoopback';
-    if (firstOctet <= 126) return 'v4ClassA';
-    if (firstOctet <= 191) return 'v4ClassB';
-    if (firstOctet <= 223) return 'v4ClassC';
-    if (firstOctet <= 239) return 'v4ClassD';
-    return 'v4ClassE';
-  };
 
   /* ---------- DOM 引用 ---------- */
   const octetInputs = [...document.querySelectorAll('#ipv4-octets .octet-input')];
@@ -61,7 +40,6 @@
     mask: 'v4-mask',
     wildcard: 'v4-wildcard',
     usable: 'v4-usable',
-    ipClass: 'v4-class',
   };
   const resultEls = Object.fromEntries(Object.entries(RESULT_IDS).map(([k, id]) => [k, $(id)]));
 
@@ -76,8 +54,6 @@
     columns: 8,
     value: 24,
     bitLabel: (n) => t('bitAria', { n }),
-    // 行尾显示该八位组的掩码十进制值
-    rowValue: (setBits) => String((0xff << (8 - setBits)) & 0xff),
     onChange: () => calculate(false),
   });
 
@@ -157,7 +133,6 @@
     setResult('mask', int2ip(maskInt));
     setResult('wildcard', int2ip(wildcardInt));
     setResult('usable', usableCount.toLocaleString());
-    setResult('ipClass', t(classify(Number(values[0]))));
   }
 
   /* ---------- 事件绑定 ---------- */

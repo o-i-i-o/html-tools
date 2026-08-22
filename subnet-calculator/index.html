@@ -25,7 +25,6 @@
     <section class="tab-page" data-page="ipv4" id="page-ipv4">
       <div class="container">
         <div class="panel panel-input">
-          <div class="panel-header"><span class="panel-title" data-i18n="v4PanelParams">IPv4 子网计算参数</span></div>
           <div class="panel-body">
             <div class="form-group">
               <label for="octet-1" data-i18n="v4IpLabel">IP 地址</label>
@@ -78,10 +77,6 @@
               <label data-i18n="v4ResUsable"></label>
               <div class="result-box"><span class="val-main" id="v4-usable">-</span></div>
             </div>
-            <div class="result-item">
-              <label data-i18n="v4ResClass"></label>
-              <div class="result-box"><span class="val-main" id="v4-class">-</span></div>
-            </div>
           </div>
         </div>
       </div>
@@ -91,7 +86,6 @@
     <section class="tab-page hidden" data-page="ipv6" id="page-ipv6">
       <div class="container">
         <div class="panel panel-input">
-          <div class="panel-header"><span class="panel-title" data-i18n="v6PanelParams">IPv6 子网计算参数</span></div>
           <div class="panel-body">
             <div class="form-group">
               <label for="ipv6-address" data-i18n="v6IpLabel">IPv6 地址</label>
@@ -110,7 +104,7 @@
         </div>
 
         <div class="panel panel-result">
-          <div class="panel-header"><span class="panel-title" data-i18n="panelResult">计算结果</span></div>
+          <div class="panel-header"><span class="val-main" id="v6-cidr">-</span></div>
           <div class="result-list">
             <div class="result-item">
               <label data-i18n="v6ResFull"></label>
@@ -121,16 +115,16 @@
               <div class="result-box"><span class="val-main" id="v6-compressed">-</span></div>
             </div>
             <div class="result-item">
-              <label data-i18n="v6ResCidr"></label>
-              <div class="result-box"><span class="val-main" id="v6-cidr">-</span></div>
-            </div>
-            <div class="result-item">
               <label data-i18n="v6ResNetwork"></label>
               <div class="result-box"><span class="val-main" id="v6-network">-</span></div>
             </div>
             <div class="result-item">
               <label data-i18n="v6ResHost"></label>
               <div class="result-box"><span class="val-main" id="v6-host">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResFirst"></label>
+              <div class="result-box"><span class="val-main" id="v6-first">-</span></div>
             </div>
             <div class="result-item">
               <label data-i18n="v6ResLast"></label>
@@ -146,7 +140,7 @@
             </div>
             <div class="result-item">
               <label data-i18n="v6ResScope"></label>
-              <div class="result-box"><span class="val-main val-note" id="v6-scope">-</span></div>
+              <div class="result-box"><span class="val-main" id="v6-scope">-</span></div>
             </div>
             <div class="result-item">
               <label data-i18n="v6ResDns"></label>

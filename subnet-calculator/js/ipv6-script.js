@@ -11,7 +11,6 @@
 
   /* ---------- 页面文案（中英文） ---------- */
   registerI18n({
-    v6PanelParams:     { zh: 'IPv6 参数配置', en: 'IPv6 Parameters' },
     v6IpLabel:         { zh: 'IPv6 地址', en: 'IPv6 Address' },
     v6IpPlaceholder:   { zh: '例如: 2001:db8::1', en: 'e.g. 2001:db8::1' },
     v6PrefixLabel:     { zh: '前缀长度', en: 'Prefix Length' },
@@ -19,15 +18,13 @@
     v6ErrFormat:       { zh: '无效的 IPv6 地址格式', en: 'Invalid IPv6 address format' },
     v6ErrDoubleColon:  { zh: 'IPv6 地址中的 :: 只能出现一次', en: ':: may appear only once in an IPv6 address' },
 
-    v6ResFull:         { zh: '完整地址', en: 'Expanded Address' },
+    v6ResFull:         { zh: '展开地址', en: 'Expanded Address' },
     v6ResCompressed:   { zh: '压缩格式', en: 'Compressed' },
-    v6ResCidr:         { zh: 'CIDR 表示法', en: 'CIDR Notation' },
     v6ResNetwork:      { zh: '网络前缀', en: 'Network Prefix' },
     v6ResHost:         { zh: '主机标识符', en: 'Host Identifier' },
-    v6ResLast:         { zh: '最后一个地址', en: 'Last Address' },
+    v6ResLast:         { zh: '结束可用地址', en: 'Last Address' },
     v6ResCount:        { zh: '地址总数', en: 'Total Addresses' },
     v6ResType:         { zh: '地址类型', en: 'Address Type' },
-    v6ResScope:        { zh: '地址范围 / 用途', en: 'Scope / Usage' },
     v6ResDns:          { zh: '反向 DNS 区域', en: 'Reverse DNS' },
 
     v6TUnspecified: { zh: '未指定地址', en: 'Unspecified' },
@@ -127,9 +124,9 @@
   const toExpanded = (value) => value.toString(16).padStart(32, '0').match(/.{4}/g).join(':');
 
   /* ---------- 地址类型与用途（返回字典 key） ---------- */
-  const classifyIPv6 = (ip) => {
-    if (ip === 0n) return { typeKey: 'v6TUnspecified', scopeKey: 'v6SUnspecified' };
-    if (ip === 1n) return { typeKey: 'v6TLoopback', scopeKey: 'v6SLoopback' };
+    const classifyIPv6 = (ip) => {
+      if (ip === 0n) return { typeKey: 'v6TUnspecified', scopeKey: 'v6SUnspecified' };
+      if (ip === 1n) return { typeKey: 'v6TLoopback', scopeKey: 'v6SLoopback' };
 
     const top16 = Number(ip >> 112n);
     const top32 = ip >> 96n;
@@ -177,8 +174,6 @@
     value: 64,
     gapAfterRow: 3, // 第 4 行（/64 边界）之后加大间距，分隔前半段与后半段
     bitLabel: (n) => t('bitAria', { n }),
-    // 行尾显示该 hextet 的掩码十六进制值
-    rowValue: (setBits) => ((0xffff << (16 - setBits)) & 0xffff).toString(16).padStart(4, '0'),
     onChange: () => calculate(false),
   });
 
