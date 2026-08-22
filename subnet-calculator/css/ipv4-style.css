@@ -15,27 +15,27 @@
   min-width: 0;
   padding: 8px 4px;
   text-align: center;
-  border: 1px solid #dcdfe6;
+  border: 1px solid #e3ded2;
   border-radius: 4px;
   font-size: 15px;
   font-family: Consolas, Monaco, "Courier New", monospace;
-  color: #017cfd;
+  color: #43648a;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .octet-input:focus {
-  border-color: #017cfd;
-  box-shadow: 0 0 0 2px rgba(1, 124, 253, 0.12);
+  border-color: #6b8fae;
+  box-shadow: 0 0 0 2px rgba(107, 143, 174, 0.22);
 }
 
 .octet-input.invalid {
-  border-color: #f56c6c;
-  box-shadow: 0 0 0 2px rgba(245, 108, 108, 0.12);
+  border-color: #cc6a5c;
+  box-shadow: 0 0 0 2px rgba(204, 106, 92, 0.15);
 }
 
 .octet-dot {
-  color: #909399;
+  color: #928d81;
   font-size: 16px;
   font-weight: 600;
   user-select: none;
