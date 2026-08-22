@@ -28,7 +28,6 @@
     pageTitle: { zh: '子网计算器 | IPv4 / IPv6', en: 'Subnet Calculator | IPv4 / IPv6' },
     siteTitle: { zh: '子网计算器', en: 'Subnet Calculator' },
     navAria:   { zh: '协议切换', en: 'Protocol switch' },
-    panelResult: { zh: '计算结果', en: 'Calculation Results' },
     clear:     { zh: '清空', en: 'Clear' },
 
     // 位图掩码编辑器

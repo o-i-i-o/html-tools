@@ -135,8 +135,6 @@ body {
   border-bottom: 1px solid #ebeef5;
 }
 
-.panel-title { font-size: 14px; font-weight: 700; color: #606266; }
-
 .panel-body { flex: 1; padding: 20px; overflow-y: auto; }
 
 /* ---------- 表单 ---------- */
@@ -448,7 +446,7 @@ body {
         </div>
 
         <div class="panel panel-result">
-          <div class="panel-header"><span class="panel-title" data-i18n="panelResult">计算结果</span></div>
+          <div class="panel-header"><span class="val-main" id="v4-cidr">-</span></div>
           <div class="result-list">
             <div class="result-item">
               <label data-i18n="v4ResNetwork"></label>
@@ -580,7 +578,6 @@ body {
     pageTitle: { zh: '子网计算器 | IPv4 / IPv6', en: 'Subnet Calculator | IPv4 / IPv6' },
     siteTitle: { zh: '子网计算器', en: 'Subnet Calculator' },
     navAria:   { zh: '协议切换', en: 'Protocol switch' },
-    panelResult: { zh: '计算结果', en: 'Calculation Results' },
     clear:     { zh: '清空', en: 'Clear' },
 
     // 位图掩码编辑器
@@ -801,6 +798,7 @@ body {
   /* ---------- DOM 引用 ---------- */
   const octetInputs = [...document.querySelectorAll('#ipv4-octets .octet-input')];
   const RESULT_IDS = {
+    cidr: 'v4-cidr',
     network: 'v4-network',
     broadcast: 'v4-broadcast',
     first: 'v4-first',
@@ -894,6 +892,7 @@ body {
       firstHost = lastHost = networkInt;
     }
 
+    setResult('cidr', `${values.join('.')}/${bits}`);
     setResult('network', int2ip(networkInt));
     setResult('broadcast', int2ip(broadcastInt));
     setResult('first', int2ip(firstHost));

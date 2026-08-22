@@ -33,6 +33,7 @@
   /* ---------- DOM 引用 ---------- */
   const octetInputs = [...document.querySelectorAll('#ipv4-octets .octet-input')];
   const RESULT_IDS = {
+    cidr: 'v4-cidr',
     network: 'v4-network',
     broadcast: 'v4-broadcast',
     first: 'v4-first',
@@ -126,6 +127,7 @@
       firstHost = lastHost = networkInt;
     }
 
+    setResult('cidr', `${values.join('.')}/${bits}`);
     setResult('network', int2ip(networkInt));
     setResult('broadcast', int2ip(broadcastInt));
     setResult('first', int2ip(firstHost));
