@@ -154,15 +154,13 @@
    * 图标显示位序号（1 起），仅选中的前缀边界位高亮。
    * 用法：createBitMask(容器, {
    *   total, columns, value, groupSize = 4, gapAfterRow,
-   *   bitLabel(n) -> aria 文案, rowValue(rowSetBits, rowIndex) -> 行标签,
-   *   onChange(bits) })
+   *   bitLabel(n) -> aria 文案, onChange(bits) })
    * 返回：{ get value / set value / refresh() }
    * ===================================================== */
-  const createBitMask = (root, { total, columns, value, groupSize = 4, gapAfterRow, bitLabel, rowValue, onChange }) => {
+  const createBitMask = (root, { total, columns, value, groupSize = 4, gapAfterRow, bitLabel, onChange }) => {
     root.classList.add('bit-mask');
 
     const bitEls = [];
-    const rowLabelEls = [];
 
     for (let r = 0; r < total / columns; r++) {
       const row = document.createElement('div');
@@ -178,12 +176,6 @@
         row.appendChild(bit);
         bitEls.push(bit);
       }
-      if (rowValue) {
-        const label = document.createElement('span');
-        label.className = 'bit-row-value';
-        row.appendChild(label);
-        rowLabelEls.push(label);
-      }
       root.appendChild(row);
     }
 
@@ -195,11 +187,6 @@
         bit.classList.toggle('on', i === current - 1);
         bit.setAttribute('aria-pressed', String(i === current - 1));
         if (bitLabel) bit.setAttribute('aria-label', bitLabel(i + 1));
-      });
-      rowLabelEls.forEach((label, r) => {
-        const rowStart = r * columns;
-        const setBits = Math.max(0, Math.min(current - rowStart, columns));
-        label.textContent = rowValue(setBits, r);
       });
     };
 

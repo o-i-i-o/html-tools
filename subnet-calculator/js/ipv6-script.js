@@ -40,18 +40,6 @@
     v6TV4Mapped:    { zh: 'IPv4 映射地址', en: 'IPv4-mapped' },
     v6TOther:       { zh: '其他类型', en: 'Other' },
 
-    v6SUnspecified: { zh: '表示“不存在此地址”，常见于主机初始化或重复地址检测过程', en: 'Indicates "no address"; used during host initialization and duplicate address detection' },
-    v6SLoopback:    { zh: '本地主机回环地址，等价于 IPv4 的 127.0.0.1', en: 'Local host loopback address, equivalent to IPv4 127.0.0.1' },
-    v6SLinkLocal:   { zh: '仅在单条链路上有效，不可路由；用于邻居发现、地址自动配置等', en: 'Valid only on a single link and not routable; used for neighbor discovery and autoconfiguration' },
-    v6SUla:         { zh: '私有地址，类似 IPv4 的 10.0.0.0/8 等', en: 'Private address similar to IPv4 private ranges (10.0.0.0/8 etc.); for internal local networks only' },
-    v6SMulticast:   { zh: '用于一对多通信，替代 IPv4 的广播', en: 'Used for one-to-many communication, replacing IPv4 broadcast' },
-    v6SDoc:         { zh: 'RFC 3849 规定的文档示例地址', en: 'Documentation prefix per RFC 3849; must not be used in real networks' },
-    v6S6to4:        { zh: '用于 IPv6 到 IPv4 的自动隧道机制', en: 'Used for automatic IPv6-to-IPv4 tunneling' },
-    v6SIetf:        { zh: '包含 Teredo、Benchmarking 等 IETF 协议特殊用途', en: 'Reserved for IETF protocol assignments (Teredo, benchmarking, etc.)' },
-    v6SGlobal:      { zh: '公网地址', en: 'Globally routable public address' },
-    v6SV4Mapped:    { zh: '内嵌 IPv4 地址的 IPv6 表示（::ffff:0:0/96），用于双栈过渡', en: 'IPv6 representation of an embedded IPv4 address (::ffff:0:0/96), used for dual-stack transition' },
-    v6SOther:       { zh: '其他特殊用途或保留地址', en: 'Other special-purpose or reserved address' },
-
     v6CountFmt:     { zh: '2^{n}（{v} 个）', en: '2^{n} ({v} addresses)' },
     v6CountOne:     { zh: '1（单个主机地址）', en: '1 (single host address)' },
   });
@@ -124,22 +112,22 @@
   const toBigInt = (expanded) => BigInt('0x' + expanded.replaceAll(':', ''));
   const toExpanded = (value) => value.toString(16).padStart(32, '0').match(/.{4}/g).join(':');
 
-  /* ---------- 地址类型与用途（返回字典 key） ---------- */
-    const classifyIPv6 = (ip) => {
-      if (ip === 0n) return { typeKey: 'v6TUnspecified', scopeKey: 'v6SUnspecified' };
-      if (ip === 1n) return { typeKey: 'v6TLoopback', scopeKey: 'v6SLoopback' };
+  /* ---------- 地址类型（返回字典 key） ---------- */
+  const classifyIPv6 = (ip) => {
+    if (ip === 0n) return 'v6TUnspecified';
+    if (ip === 1n) return 'v6TLoopback';
 
     const top16 = Number(ip >> 112n);
     const top32 = ip >> 96n;
-    if ((top16 & 0xffc0) === 0xfe80) return { typeKey: 'v6TLinkLocal', scopeKey: 'v6SLinkLocal' };
-    if ((top16 & 0xfe00) === 0xfc00) return { typeKey: 'v6TUla', scopeKey: 'v6SUla' };
-    if ((top16 & 0xff00) === 0xff00) return { typeKey: 'v6TMulticast', scopeKey: 'v6SMulticast' };
-    if (top32 === 0x20010db8n) return { typeKey: 'v6TDoc', scopeKey: 'v6SDoc' };
-    if (top16 === 0x2002) return { typeKey: 'v6T6to4', scopeKey: 'v6S6to4' };
-    if (top32 === 0x20010000n) return { typeKey: 'v6TIetf', scopeKey: 'v6SIetf' };
-    if ((ip >> 32n) === 0xffffn) return { typeKey: 'v6TV4Mapped', scopeKey: 'v6SV4Mapped' };
-    if ((top16 & 0xe000) === 0x2000) return { typeKey: 'v6TGlobal', scopeKey: 'v6SGlobal' };
-    return { typeKey: 'v6TOther', scopeKey: 'v6SOther' };
+    if ((top16 & 0xffc0) === 0xfe80) return 'v6TLinkLocal';
+    if ((top16 & 0xfe00) === 0xfc00) return 'v6TUla';
+    if ((top16 & 0xff00) === 0xff00) return 'v6TMulticast';
+    if (top32 === 0x20010db8n) return 'v6TDoc';
+    if (top16 === 0x2002) return 'v6T6to4';
+    if (top32 === 0x20010000n) return 'v6TIetf';
+    if ((ip >> 32n) === 0xffffn) return 'v6TV4Mapped';
+    if ((top16 & 0xe000) === 0x2000) return 'v6TGlobal';
+    return 'v6TOther';
   };
 
   /* ---------- 其他展示项 ---------- */
@@ -161,7 +149,7 @@
 
   /* ---------- DOM 引用 ---------- */
   const addressInput = $('ipv6-address');
-  const RESULT_KEYS = ['full', 'compressed', 'cidr', 'network', 'host', 'last', 'count', 'type', 'scope', 'dns'];
+  const RESULT_KEYS = ['full', 'compressed', 'cidr', 'network', 'host', 'first', 'last', 'count', 'type', 'dns'];
   const resultEls = Object.fromEntries(RESULT_KEYS.map((key) => [key, $('v6-' + key)]));
 
   const resetResults = () => {
@@ -215,17 +203,18 @@
     const host = ip & hostMask;
     const compressed = compressIPv6(expanded);
     const networkExpanded = toExpanded(network);
-    const { typeKey, scopeKey } = classifyIPv6(ip);
+    const typeKey = classifyIPv6(ip);
 
     resultEls.full.textContent = expanded;
     resultEls.compressed.textContent = compressed;
     resultEls.cidr.textContent = `${compressed}/${prefix}`;
     resultEls.network.textContent = `${compressIPv6(networkExpanded)}/${prefix}`;
     resultEls.host.textContent = compressIPv6(toExpanded(host));
+    // IPv6 无网络地址/广播地址保留概念，起始地址即网络前缀本身的第一个地址
+    resultEls.first.textContent = compressIPv6(networkExpanded);
     resultEls.last.textContent = compressIPv6(toExpanded(last));
     resultEls.count.textContent = formatCount(prefix);
     resultEls.type.textContent = t(typeKey);
-    resultEls.scope.textContent = t(scopeKey);
     resultEls.dns.textContent = reverseDns(networkExpanded, prefix);
   }
 

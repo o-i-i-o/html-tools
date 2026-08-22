@@ -234,14 +234,6 @@ body {
 /* 指定行之后加大间距（IPv6 用于分隔前 /64 与后半段） */
 .bit-row--gap-after { margin-bottom: 12px; }
 
-/* 行尾数值：IPv4 显示八位组十进制值，IPv6 显示 hextet 十六进制值 */
-.bit-row-value {
-  flex-shrink: 0;
-  padding-left: 8px;
-  font-family: Consolas, Monaco, "Courier New", monospace;
-  font-size: 12px;
-  color: #909399;
-}
 
 /* 紧凑版（IPv6 8 行 16 列） */
 .bit-mask--dense { gap: 4px; }
@@ -414,14 +406,6 @@ body {
   letter-spacing: -0.2px;
 }
 
-/* 说明性结果（地址范围 / 用途）使用正文字体，弱化代码感 */
-.val-note {
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 400;
-  color: #606266;
-  line-height: 1.6;
-}
 
   </style>
 </head>
@@ -442,10 +426,9 @@ body {
     <section class="tab-page" data-page="ipv4" id="page-ipv4">
       <div class="container">
         <div class="panel panel-input">
-          <div class="panel-header"><span class="panel-title" data-i18n="v4PanelParams">IPv4 子网计算参数</span></div>
           <div class="panel-body">
             <div class="form-group">
-              <label for="octet-1" data-i18n="v4IpLabel">IP 地址</label>
+              <label for="octet-1" data-i18n="v4IpLabel">IPv4 地址</label>
               <div class="octet-row" id="ipv4-octets">
                 <input type="text" id="octet-1" class="octet-input" value="192" inputmode="numeric" autocomplete="off">
                 <span class="octet-dot">.</span>
@@ -495,10 +478,6 @@ body {
               <label data-i18n="v4ResUsable"></label>
               <div class="result-box"><span class="val-main" id="v4-usable">-</span></div>
             </div>
-            <div class="result-item">
-              <label data-i18n="v4ResClass"></label>
-              <div class="result-box"><span class="val-main" id="v4-class">-</span></div>
-            </div>
           </div>
         </div>
       </div>
@@ -508,7 +487,6 @@ body {
     <section class="tab-page hidden" data-page="ipv6" id="page-ipv6">
       <div class="container">
         <div class="panel panel-input">
-          <div class="panel-header"><span class="panel-title" data-i18n="v6PanelParams">IPv6 子网计算参数</span></div>
           <div class="panel-body">
             <div class="form-group">
               <label for="ipv6-address" data-i18n="v6IpLabel">IPv6 地址</label>
@@ -527,7 +505,7 @@ body {
         </div>
 
         <div class="panel panel-result">
-          <div class="panel-header"><span class="panel-title" data-i18n="panelResult">计算结果</span></div>
+          <div class="panel-header"><span class="val-main" id="v6-cidr">-</span></div>
           <div class="result-list">
             <div class="result-item">
               <label data-i18n="v6ResFull"></label>
@@ -538,16 +516,16 @@ body {
               <div class="result-box"><span class="val-main" id="v6-compressed">-</span></div>
             </div>
             <div class="result-item">
-              <label data-i18n="v6ResCidr"></label>
-              <div class="result-box"><span class="val-main" id="v6-cidr">-</span></div>
-            </div>
-            <div class="result-item">
               <label data-i18n="v6ResNetwork"></label>
               <div class="result-box"><span class="val-main" id="v6-network">-</span></div>
             </div>
             <div class="result-item">
               <label data-i18n="v6ResHost"></label>
               <div class="result-box"><span class="val-main" id="v6-host">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResFirst"></label>
+              <div class="result-box"><span class="val-main" id="v6-first">-</span></div>
             </div>
             <div class="result-item">
               <label data-i18n="v6ResLast"></label>
@@ -560,10 +538,6 @@ body {
             <div class="result-item">
               <label data-i18n="v6ResType"></label>
               <div class="result-box"><span class="val-main" id="v6-type">-</span></div>
-            </div>
-            <div class="result-item">
-              <label data-i18n="v6ResScope"></label>
-              <div class="result-box"><span class="val-main val-note" id="v6-scope">-</span></div>
             </div>
             <div class="result-item">
               <label data-i18n="v6ResDns"></label>
@@ -732,15 +706,13 @@ body {
    * 图标显示位序号（1 起），仅选中的前缀边界位高亮。
    * 用法：createBitMask(容器, {
    *   total, columns, value, groupSize = 4, gapAfterRow,
-   *   bitLabel(n) -> aria 文案, rowValue(rowSetBits, rowIndex) -> 行标签,
-   *   onChange(bits) })
+   *   bitLabel(n) -> aria 文案, onChange(bits) })
    * 返回：{ get value / set value / refresh() }
    * ===================================================== */
-  const createBitMask = (root, { total, columns, value, groupSize = 4, gapAfterRow, bitLabel, rowValue, onChange }) => {
+  const createBitMask = (root, { total, columns, value, groupSize = 4, gapAfterRow, bitLabel, onChange }) => {
     root.classList.add('bit-mask');
 
     const bitEls = [];
-    const rowLabelEls = [];
 
     for (let r = 0; r < total / columns; r++) {
       const row = document.createElement('div');
@@ -756,12 +728,6 @@ body {
         row.appendChild(bit);
         bitEls.push(bit);
       }
-      if (rowValue) {
-        const label = document.createElement('span');
-        label.className = 'bit-row-value';
-        row.appendChild(label);
-        rowLabelEls.push(label);
-      }
       root.appendChild(row);
     }
 
@@ -773,11 +739,6 @@ body {
         bit.classList.toggle('on', i === current - 1);
         bit.setAttribute('aria-pressed', String(i === current - 1));
         if (bitLabel) bit.setAttribute('aria-label', bitLabel(i + 1));
-      });
-      rowLabelEls.forEach((label, r) => {
-        const rowStart = r * columns;
-        const setBits = Math.max(0, Math.min(current - rowStart, columns));
-        label.textContent = rowValue(setBits, r);
       });
     };
 
@@ -817,46 +778,25 @@ body {
 
   /* ---------- 页面文案（中英文） ---------- */
   registerI18n({
-    v4PanelParams:   { zh: 'IPv4 参数配置', en: 'IPv4 Subnet Parameters' },
-    v4IpLabel:       { zh: 'IP 地址', en: 'IP Address' },
-    v4OctetAria:     { zh: 'IP 地址第 {n} 段', en: 'IP octet {n}' },
+    v4IpLabel:       { zh: 'IPv4 地址', en: 'IPv4 Address' },
+    v4OctetAria:     { zh: 'IPv4 地址第 {n} 段', en: 'IPv4 octet {n}' },
     v4MaskLabel:     { zh: '子网掩码 / CIDR', en: 'Subnet Mask / CIDR' },
     v4MaskGridAria:  { zh: '子网掩码位图', en: 'Subnet mask bit map' },
     v4Invalid:       { zh: '请输入正确的 IPv4 地址（每段为 0 - 255 的数字）', en: 'Enter a valid IPv4 address (each octet 0-255)' },
 
     v4ResNetwork:    { zh: '网络地址', en: 'Network Address' },
     v4ResBroadcast:  { zh: '广播地址', en: 'Broadcast Address' },
-    v4ResFirst:      { zh: '起始可用 IP', en: 'First Host' },
-    v4ResLast:       { zh: '结束可用 IP', en: 'Last Host' },
+    v4ResFirst:      { zh: '起始可用地址', en: 'First Host' },
+    v4ResLast:       { zh: '结束可用地址', en: 'Last Host' },
     v4ResMask:       { zh: '子网掩码', en: 'Subnet Mask' },
     v4ResWildcard:   { zh: '反掩码', en: 'Wildcard Mask' },
-    v4ResUsable:     { zh: '可用主机数', en: 'Usable Hosts' },
-    v4ResClass:      { zh: 'IP 分类', en: 'IP Class' },
-
-    v4ClassA:        { zh: 'A 类', en: 'Class A' },
-    v4ClassB:        { zh: 'B 类', en: 'Class B' },
-    v4ClassC:        { zh: 'C 类', en: 'Class C' },
-    v4ClassD:        { zh: 'D 类（组播）', en: 'Class D (Multicast)' },
-    v4ClassE:        { zh: 'E 类（科研保留）', en: 'Class E (Reserved)' },
-    v4ClassLoopback: { zh: '环回地址（Loopback）', en: 'Loopback' },
-    v4ClassReserved: { zh: '保留地址', en: 'Reserved' },
+    v4ResUsable:     { zh: '可用地址数', en: 'Usable Addresses' },
   });
 
   /* ---------- 数值转换工具 ---------- */
   const ip2int = ([a, b, c, d]) => ((a << 24) | (b << 16) | (c << 8) | d) >>> 0;
   const int2ip = (n) => [n >>> 24, (n >>> 16) & 0xff, (n >>> 8) & 0xff, n & 0xff].join('.');
   const cidrToMask = (bits) => (bits === 0 ? 0 : (0xffffffff << (32 - bits)) >>> 0);
-
-  /* ---------- IP 地址分类（返回字典 key） ---------- */
-  const classify = (firstOctet) => {
-    if (firstOctet === 0) return 'v4ClassReserved';
-    if (firstOctet === 127) return 'v4ClassLoopback';
-    if (firstOctet <= 126) return 'v4ClassA';
-    if (firstOctet <= 191) return 'v4ClassB';
-    if (firstOctet <= 223) return 'v4ClassC';
-    if (firstOctet <= 239) return 'v4ClassD';
-    return 'v4ClassE';
-  };
 
   /* ---------- DOM 引用 ---------- */
   const octetInputs = [...document.querySelectorAll('#ipv4-octets .octet-input')];
@@ -868,7 +808,6 @@ body {
     mask: 'v4-mask',
     wildcard: 'v4-wildcard',
     usable: 'v4-usable',
-    ipClass: 'v4-class',
   };
   const resultEls = Object.fromEntries(Object.entries(RESULT_IDS).map(([k, id]) => [k, $(id)]));
 
@@ -883,8 +822,6 @@ body {
     columns: 8,
     value: 24,
     bitLabel: (n) => t('bitAria', { n }),
-    // 行尾显示该八位组的掩码十进制值
-    rowValue: (setBits) => String((0xff << (8 - setBits)) & 0xff),
     onChange: () => calculate(false),
   });
 
@@ -964,7 +901,6 @@ body {
     setResult('mask', int2ip(maskInt));
     setResult('wildcard', int2ip(wildcardInt));
     setResult('usable', usableCount.toLocaleString());
-    setResult('ipClass', t(classify(Number(values[0]))));
   }
 
   /* ---------- 事件绑定 ---------- */
@@ -1041,7 +977,6 @@ body {
 
   /* ---------- 页面文案（中英文） ---------- */
   registerI18n({
-    v6PanelParams:     { zh: 'IPv6 参数配置', en: 'IPv6 Parameters' },
     v6IpLabel:         { zh: 'IPv6 地址', en: 'IPv6 Address' },
     v6IpPlaceholder:   { zh: '例如: 2001:db8::1', en: 'e.g. 2001:db8::1' },
     v6PrefixLabel:     { zh: '前缀长度', en: 'Prefix Length' },
@@ -1049,15 +984,14 @@ body {
     v6ErrFormat:       { zh: '无效的 IPv6 地址格式', en: 'Invalid IPv6 address format' },
     v6ErrDoubleColon:  { zh: 'IPv6 地址中的 :: 只能出现一次', en: ':: may appear only once in an IPv6 address' },
 
-    v6ResFull:         { zh: '完整地址', en: 'Expanded Address' },
+    v6ResFull:         { zh: '展开地址', en: 'Expanded Address' },
     v6ResCompressed:   { zh: '压缩格式', en: 'Compressed' },
-    v6ResCidr:         { zh: 'CIDR 表示法', en: 'CIDR Notation' },
     v6ResNetwork:      { zh: '网络前缀', en: 'Network Prefix' },
     v6ResHost:         { zh: '主机标识符', en: 'Host Identifier' },
-    v6ResLast:         { zh: '最后一个地址', en: 'Last Address' },
+    v6ResFirst:        { zh: '起始可用地址', en: 'First Address' },
+    v6ResLast:         { zh: '结束可用地址', en: 'Last Address' },
     v6ResCount:        { zh: '地址总数', en: 'Total Addresses' },
     v6ResType:         { zh: '地址类型', en: 'Address Type' },
-    v6ResScope:        { zh: '地址范围 / 用途', en: 'Scope / Usage' },
     v6ResDns:          { zh: '反向 DNS 区域', en: 'Reverse DNS' },
 
     v6TUnspecified: { zh: '未指定地址', en: 'Unspecified' },
@@ -1072,18 +1006,6 @@ body {
     v6TV4Mapped:    { zh: 'IPv4 映射地址', en: 'IPv4-mapped' },
     v6TOther:       { zh: '其他类型', en: 'Other' },
 
-    v6SUnspecified: { zh: '表示“不存在此地址”，常见于主机初始化或重复地址检测过程', en: 'Indicates "no address"; used during host initialization and duplicate address detection' },
-    v6SLoopback:    { zh: '本地主机回环地址，等价于 IPv4 的 127.0.0.1', en: 'Local host loopback address, equivalent to IPv4 127.0.0.1' },
-    v6SLinkLocal:   { zh: '仅在单条链路上有效，不可路由；用于邻居发现、地址自动配置等', en: 'Valid only on a single link and not routable; used for neighbor discovery and autoconfiguration' },
-    v6SUla:         { zh: '私有地址，类似 IPv4 的 10.0.0.0/8 等', en: 'Private address similar to IPv4 private ranges (10.0.0.0/8 etc.); for internal local networks only' },
-    v6SMulticast:   { zh: '用于一对多通信，替代 IPv4 的广播', en: 'Used for one-to-many communication, replacing IPv4 broadcast' },
-    v6SDoc:         { zh: 'RFC 3849 规定的文档示例地址', en: 'Documentation prefix per RFC 3849; must not be used in real networks' },
-    v6S6to4:        { zh: '用于 IPv6 到 IPv4 的自动隧道机制', en: 'Used for automatic IPv6-to-IPv4 tunneling' },
-    v6SIetf:        { zh: '包含 Teredo、Benchmarking 等 IETF 协议特殊用途', en: 'Reserved for IETF protocol assignments (Teredo, benchmarking, etc.)' },
-    v6SGlobal:      { zh: '可在全球互联网上路由的公网地址', en: 'Globally routable public address' },
-    v6SV4Mapped:    { zh: '内嵌 IPv4 地址的 IPv6 表示（::ffff:0:0/96），用于双栈过渡', en: 'IPv6 representation of an embedded IPv4 address (::ffff:0:0/96), used for dual-stack transition' },
-    v6SOther:       { zh: '其他特殊用途或保留地址', en: 'Other special-purpose or reserved address' },
-
     v6CountFmt:     { zh: '2^{n}（{v} 个）', en: '2^{n} ({v} addresses)' },
     v6CountOne:     { zh: '1（单个主机地址）', en: '1 (single host address)' },
   });
@@ -1096,6 +1018,7 @@ body {
 
     // 兼容尾部 IPv4 写法，如 ::ffff:192.168.1.1
     const colon = text.lastIndexOf(':');
+    if (colon === -1) throw new Error('v6ErrFormat');
     const tail = text.slice(colon + 1);
     if (tail.includes('.')) {
       const parts = tail.split('.');
@@ -1155,22 +1078,22 @@ body {
   const toBigInt = (expanded) => BigInt('0x' + expanded.replaceAll(':', ''));
   const toExpanded = (value) => value.toString(16).padStart(32, '0').match(/.{4}/g).join(':');
 
-  /* ---------- 地址类型与用途（返回字典 key） ---------- */
+  /* ---------- 地址类型（返回字典 key） ---------- */
   const classifyIPv6 = (ip) => {
-    if (ip === 0n) return { typeKey: 'v6TUnspecified', scopeKey: 'v6SUnspecified' };
-    if (ip === 1n) return { typeKey: 'v6TLoopback', scopeKey: 'v6SLoopback' };
+    if (ip === 0n) return 'v6TUnspecified';
+    if (ip === 1n) return 'v6TLoopback';
 
     const top16 = Number(ip >> 112n);
     const top32 = ip >> 96n;
-    if ((top16 & 0xffc0) === 0xfe80) return { typeKey: 'v6TLinkLocal', scopeKey: 'v6SLinkLocal' };
-    if ((top16 & 0xfe00) === 0xfc00) return { typeKey: 'v6TUla', scopeKey: 'v6SUla' };
-    if ((top16 & 0xff00) === 0xff00) return { typeKey: 'v6TMulticast', scopeKey: 'v6SMulticast' };
-    if (top32 === 0x20010db8n) return { typeKey: 'v6TDoc', scopeKey: 'v6SDoc' };
-    if (top16 === 0x2002) return { typeKey: 'v6T6to4', scopeKey: 'v6S6to4' };
-    if (top32 === 0x20010000n) return { typeKey: 'v6TIetf', scopeKey: 'v6SIetf' };
-    if ((ip >> 32n) === 0xffffn) return { typeKey: 'v6TV4Mapped', scopeKey: 'v6SV4Mapped' };
-    if ((top16 & 0xe000) === 0x2000) return { typeKey: 'v6TGlobal', scopeKey: 'v6SGlobal' };
-    return { typeKey: 'v6TOther', scopeKey: 'v6SOther' };
+    if ((top16 & 0xffc0) === 0xfe80) return 'v6TLinkLocal';
+    if ((top16 & 0xfe00) === 0xfc00) return 'v6TUla';
+    if ((top16 & 0xff00) === 0xff00) return 'v6TMulticast';
+    if (top32 === 0x20010db8n) return 'v6TDoc';
+    if (top16 === 0x2002) return 'v6T6to4';
+    if (top32 === 0x20010000n) return 'v6TIetf';
+    if ((ip >> 32n) === 0xffffn) return 'v6TV4Mapped';
+    if ((top16 & 0xe000) === 0x2000) return 'v6TGlobal';
+    return 'v6TOther';
   };
 
   /* ---------- 其他展示项 ---------- */
@@ -1192,7 +1115,7 @@ body {
 
   /* ---------- DOM 引用 ---------- */
   const addressInput = $('ipv6-address');
-  const RESULT_KEYS = ['full', 'compressed', 'cidr', 'network', 'host', 'last', 'count', 'type', 'scope', 'dns'];
+  const RESULT_KEYS = ['full', 'compressed', 'cidr', 'network', 'host', 'first', 'last', 'count', 'type', 'dns'];
   const resultEls = Object.fromEntries(RESULT_KEYS.map((key) => [key, $('v6-' + key)]));
 
   const resetResults = () => {
@@ -1206,8 +1129,6 @@ body {
     value: 64,
     gapAfterRow: 3, // 第 4 行（/64 边界）之后加大间距，分隔前半段与后半段
     bitLabel: (n) => t('bitAria', { n }),
-    // 行尾显示该 hextet 的掩码十六进制值
-    rowValue: (setBits) => ((0xffff << (16 - setBits)) & 0xffff).toString(16).padStart(4, '0'),
     onChange: () => calculate(false),
   });
 
@@ -1248,17 +1169,18 @@ body {
     const host = ip & hostMask;
     const compressed = compressIPv6(expanded);
     const networkExpanded = toExpanded(network);
-    const { typeKey, scopeKey } = classifyIPv6(ip);
+    const typeKey = classifyIPv6(ip);
 
     resultEls.full.textContent = expanded;
     resultEls.compressed.textContent = compressed;
     resultEls.cidr.textContent = `${compressed}/${prefix}`;
     resultEls.network.textContent = `${compressIPv6(networkExpanded)}/${prefix}`;
     resultEls.host.textContent = compressIPv6(toExpanded(host));
+    // IPv6 无网络地址/广播地址保留概念，起始地址即网络前缀本身的第一个地址
+    resultEls.first.textContent = compressIPv6(networkExpanded);
     resultEls.last.textContent = compressIPv6(toExpanded(last));
     resultEls.count.textContent = formatCount(prefix);
     resultEls.type.textContent = t(typeKey);
-    resultEls.scope.textContent = t(scopeKey);
     resultEls.dns.textContent = reverseDns(networkExpanded, prefix);
   }
 
