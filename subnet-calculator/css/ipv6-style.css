@@ -1,0 +1,18 @@
+/* =====================================================
+   IPv6 页专属样式（公共部分见 common-style.css）
+   ===================================================== */
+
+/* 128 位地址文本较长，适当缩小字号保证单栏可读性 */
+#page-ipv6 .val-main {
+  font-size: 13px;
+  letter-spacing: -0.2px;
+}
+
+/* 说明性结果（地址范围 / 用途）使用正文字体，弱化代码感 */
+.val-note {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  color: #606266;
+  line-height: 1.6;
+}

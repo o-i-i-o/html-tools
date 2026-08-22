@@ -1,0 +1,350 @@
+/* =====================================================
+   子网计算器 公共样式
+   包含：基础重置 / 顶部导航与标签页 / 语言切换按钮 / 双栏面板
+        / 表单控件 / 位图掩码编辑器 / 计算结果列表 / Toast 提示
+   各页面专属样式见 ipv4-style.css、ipv6-style.css
+   ===================================================== */
+
+/* ---------- 基础 ---------- */
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; min-height: 100vh; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  color: #303133;
+  background: #f5f7fa;
+}
+
+.hidden { display: none !important; }
+
+.mono { font-family: Consolas, Monaco, "Courier New", monospace; }
+
+/* ---------- 顶部导航与标签页 ---------- */
+.site-header {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  height: 56px;
+}
+
+.site-title {
+  margin: 0 40px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #303133;
+  white-space: nowrap;
+}
+
+.tabs { display: flex; align-self: stretch; }
+
+.tab-btn {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0 18px;
+  font-size: 14px;
+  color: #606266;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.tab-btn:hover { color: #017cfd; }
+
+.tab-btn.active {
+  color: #017cfd;
+  font-weight: 600;
+  border-bottom-color: #017cfd;
+}
+
+/* 语言切换按钮 */
+.lang-toggle {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 4px 12px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  background: #fff;
+  color: #606266;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.lang-toggle:hover { color: #017cfd; border-color: #017cfd; }
+
+/* ---------- 页面主体与双栏面板 ---------- */
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px 20px 40px;
+}
+
+.tab-page { display: flex; flex-direction: column; gap: 20px; }
+
+.container {
+  display: flex;
+  gap: 16px;
+  height: 480px;
+  min-height: 420px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.panel-input { width: 35%; flex-shrink: 0; }
+
+.panel-result { flex: 1; min-width: 0; background: #fafafa; }
+
+.panel-header {
+  padding: 10px 15px;
+  background: #fafafa;
+  border-bottom: 1px solid #ebeef5;
+}
+
+.panel-title { font-size: 14px; font-weight: 700; color: #606266; }
+
+.panel-body { flex: 1; padding: 20px; overflow-y: auto; }
+
+/* ---------- 表单 ---------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.form-group > label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #606266;
+}
+
+.text-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  color: #017cfd;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.text-input:focus { border-color: #017cfd; box-shadow: 0 0 0 2px rgba(1, 124, 253, 0.12); }
+
+.text-input.invalid { border-color: #f56c6c; box-shadow: 0 0 0 2px rgba(245, 108, 108, 0.12); }
+
+.input-row { display: flex; gap: 8px; }
+
+.input-row .text-input { flex: 1; min-width: 0; }
+
+/* ---------- 按钮 ---------- */
+.btn {
+  appearance: none;
+  border: 1px solid #dcdfe6;
+  background: #fff;
+  color: #606266;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.btn:hover { color: #017cfd; border-color: #017cfd; background: #f0f8fe; }
+
+/* ---------- 位图掩码编辑器 ---------- */
+.bit-mask {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+/* 行内图标弹性铺满整行宽度 */
+.bit-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.bit {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 30px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  background: #fff;
+  color: #909399;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+}
+
+.bit:hover { border-color: #017cfd; color: #017cfd; }
+
+.bit.on {
+  background: #017cfd;
+  border-color: #017cfd;
+  color: #fff;
+}
+
+/* 每 4 位一组的组间间距 */
+.bit--group-start { margin-left: 8px; }
+
+/* 指定行之后加大间距（IPv6 用于分隔前 /64 与后半段） */
+.bit-row--gap-after { margin-bottom: 12px; }
+
+/* 行尾数值：IPv4 显示八位组十进制值，IPv6 显示 hextet 十六进制值 */
+.bit-row-value {
+  flex-shrink: 0;
+  padding-left: 8px;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 12px;
+  color: #909399;
+}
+
+/* 紧凑版（IPv6 8 行 16 列） */
+.bit-mask--dense { gap: 4px; }
+
+.bit-mask--dense .bit-row { gap: 3px; }
+
+.bit-mask--dense .bit {
+  height: 22px;
+  font-size: 10px;
+  border-radius: 3px;
+}
+
+.bit-mask--dense .bit--group-start { margin-left: 6px; }
+
+/* ---------- 计算结果列表 ---------- */
+.result-list {
+  flex: 1;
+  min-height: 0;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 30px;
+  align-content: start;
+  overflow-y: auto;
+}
+
+.result-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  border-bottom: 1px dashed #ebeef5;
+  padding-bottom: 12px;
+  min-width: 0;
+}
+
+/* 网格最后一行不需要分隔线 */
+.result-item:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 0; }
+
+.result-item label {
+  width: 100px;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #606266;
+  text-align: right;
+  margin-top: 2px;
+}
+
+.result-box {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.val-main {
+  font-size: 15px;
+  font-weight: 700;
+  color: #017cfd;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  word-break: break-all;
+}
+
+/* ---------- Toast 提示 ---------- */
+.toast-container {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  cursor: pointer;
+  min-width: 240px;
+  max-width: 420px;
+  padding: 11px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.toast--in { opacity: 1; transform: none; }
+
+.toast--info { background: #3b82f6; }
+.toast--success { background: #10b981; }
+.toast--warning { background: #f59e0b; }
+.toast--error { background: #ef4444; }
+
+/* ---------- 响应式：窄屏时上下堆叠 ---------- */
+@media (max-width: 900px) {
+  .container { flex-direction: column; height: auto; min-height: 0; }
+
+  .panel-input { width: 100%; }
+
+  .panel-result .result-list {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .site-title { margin-right: 16px; }
+}

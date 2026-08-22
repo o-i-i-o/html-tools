@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>子网计算器 | IPv4 / IPv6</title>
+  <link rel="stylesheet" href="css/common-style.css">
+  <link rel="stylesheet" href="css/ipv4-style.css">
+  <link rel="stylesheet" href="css/ipv6-style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title" data-i18n="siteTitle">子网计算器</h1>
+      <nav class="tabs" aria-label="协议切换" data-i18n-aria="navAria">
+        <button type="button" class="tab-btn active" data-tab="ipv4">IPv4</button>
+        <button type="button" class="tab-btn" data-tab="ipv6">IPv6</button>
+      </nav>
+      <button id="btn-lang" class="lang-toggle" type="button">EN</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- ==================== IPv4 页 ==================== -->
+    <section class="tab-page" data-page="ipv4" id="page-ipv4">
+      <div class="container">
+        <div class="panel panel-input">
+          <div class="panel-header"><span class="panel-title" data-i18n="v4PanelParams">IPv4 子网计算参数</span></div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="octet-1" data-i18n="v4IpLabel">IP 地址</label>
+              <div class="octet-row" id="ipv4-octets">
+                <input type="text" id="octet-1" class="octet-input" value="192" inputmode="numeric" autocomplete="off">
+                <span class="octet-dot">.</span>
+                <input type="text" id="octet-2" class="octet-input" value="168" inputmode="numeric" autocomplete="off">
+                <span class="octet-dot">.</span>
+                <input type="text" id="octet-3" class="octet-input" value="1" inputmode="numeric" autocomplete="off">
+                <span class="octet-dot">.</span>
+                <input type="text" id="octet-4" class="octet-input" value="1" inputmode="numeric" autocomplete="off">
+                <button type="button" class="btn" id="ipv4-clear-btn" data-i18n="clear">清空</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="v4MaskLabel">子网掩码 / CIDR</label>
+              <div class="bit-mask" id="mask-bits" role="group" aria-label="子网掩码位图" data-i18n-aria="v4MaskGridAria"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-result">
+          <div class="panel-header"><span class="panel-title" data-i18n="panelResult">计算结果</span></div>
+          <div class="result-list">
+            <div class="result-item">
+              <label data-i18n="v4ResNetwork"></label>
+              <div class="result-box"><span class="val-main" id="v4-network">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v4ResBroadcast"></label>
+              <div class="result-box"><span class="val-main" id="v4-broadcast">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v4ResFirst"></label>
+              <div class="result-box"><span class="val-main" id="v4-first">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v4ResLast"></label>
+              <div class="result-box"><span class="val-main" id="v4-last">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v4ResMask"></label>
+              <div class="result-box"><span class="val-main" id="v4-mask">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v4ResWildcard"></label>
+              <div class="result-box"><span class="val-main" id="v4-wildcard">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v4ResUsable"></label>
+              <div class="result-box"><span class="val-main" id="v4-usable">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v4ResClass"></label>
+              <div class="result-box"><span class="val-main" id="v4-class">-</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== IPv6 页 ==================== -->
+    <section class="tab-page hidden" data-page="ipv6" id="page-ipv6">
+      <div class="container">
+        <div class="panel panel-input">
+          <div class="panel-header"><span class="panel-title" data-i18n="v6PanelParams">IPv6 子网计算参数</span></div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="ipv6-address" data-i18n="v6IpLabel">IPv6 地址</label>
+              <div class="input-row">
+                <input type="text" id="ipv6-address" class="text-input" value="2001:db8::1"
+                       placeholder="例如: 2001:db8::1" data-i18n-placeholder="v6IpPlaceholder"
+                       autocomplete="off" spellcheck="false">
+                <button type="button" class="btn" id="ipv6-clear-btn" data-i18n="clear">清空</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="v6PrefixLabel">前缀长度</label>
+              <div class="bit-mask bit-mask--dense" id="prefix-bits" role="group" aria-label="前缀长度位图" data-i18n-aria="v6PrefixGridAria"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-result">
+          <div class="panel-header"><span class="panel-title" data-i18n="panelResult">计算结果</span></div>
+          <div class="result-list">
+            <div class="result-item">
+              <label data-i18n="v6ResFull"></label>
+              <div class="result-box"><span class="val-main" id="v6-full">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResCompressed"></label>
+              <div class="result-box"><span class="val-main" id="v6-compressed">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResCidr"></label>
+              <div class="result-box"><span class="val-main" id="v6-cidr">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResNetwork"></label>
+              <div class="result-box"><span class="val-main" id="v6-network">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResHost"></label>
+              <div class="result-box"><span class="val-main" id="v6-host">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResLast"></label>
+              <div class="result-box"><span class="val-main" id="v6-last">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResCount"></label>
+              <div class="result-box"><span class="val-main" id="v6-count">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResType"></label>
+              <div class="result-box"><span class="val-main" id="v6-type">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResScope"></label>
+              <div class="result-box"><span class="val-main val-note" id="v6-scope">-</span></div>
+            </div>
+            <div class="result-item">
+              <label data-i18n="v6ResDns"></label>
+              <div class="result-box"><span class="val-main" id="v6-dns">-</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/common-script.js"></script>
+  <script src="js/ipv4-script.js"></script>
+  <script src="js/ipv6-script.js"></script>
+</body>
+</html>

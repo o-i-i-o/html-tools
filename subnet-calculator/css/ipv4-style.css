@@ -1,0 +1,44 @@
+/* =====================================================
+   IPv4 页专属样式（公共部分见 common-style.css）
+   ===================================================== */
+
+/* IPv4 地址分段输入：4 个输入框以 . 分隔，右侧为清空按钮 */
+.octet-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.octet-input {
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  padding: 8px 4px;
+  text-align: center;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  color: #017cfd;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.octet-input:focus {
+  border-color: #017cfd;
+  box-shadow: 0 0 0 2px rgba(1, 124, 253, 0.12);
+}
+
+.octet-input.invalid {
+  border-color: #f56c6c;
+  box-shadow: 0 0 0 2px rgba(245, 108, 108, 0.12);
+}
+
+.octet-dot {
+  color: #909399;
+  font-size: 16px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.octet-row .btn { flex-shrink: 0; }
