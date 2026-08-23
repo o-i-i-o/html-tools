@@ -12,7 +12,7 @@
   /* ---------- 页面文案（中英文） ---------- */
   registerI18n({
     v6IpLabel:         { zh: 'IPv6 地址', en: 'IPv6 Address' },
-    v6IpPlaceholder:   { zh: '例如: 2001:db8::1', en: 'e.g. 2001:db8::1' },
+    v6IpPlaceholder:   { zh: '例如: 2001::1', en: 'e.g. 2001::1' },
     v6PrefixLabel:     { zh: '前缀长度', en: 'Prefix Length' },
     v6PrefixGridAria:  { zh: '前缀长度位图', en: 'Prefix length bit map' },
     v6ErrFormat:       { zh: '无效的 IPv6 地址格式', en: 'Invalid IPv6 address format' },
