@@ -1,7 +1,7 @@
 /* =====================================================
  * 子网计算器 公共脚本
  * 提供：中英文 i18n（参照 password-standalone 的实现方式）
- *      / 标签页切换 / Toast 提示 / 位图掩码编辑器
+ *      / 标签页切换 / 位图掩码编辑器
  * 本文件需在 ipv4-script.js、ipv6-script.js 之前加载
  * ===================================================== */
 (() => {
@@ -89,43 +89,6 @@
   }
 
   /* =====================================================
-   * 轻量 Toast 提示
-   * ===================================================== */
-  const toast = (() => {
-    const container = document.createElement('div');
-    container.className = 'toast-container';
-    document.body.appendChild(container);
-
-    const TYPE_CLASS = {
-      info: 'toast--info',
-      success: 'toast--success',
-      warning: 'toast--warning',
-      error: 'toast--error',
-    };
-    const activeMessages = new Set();
-
-    return (message, type = 'info', duration = 3000) => {
-      if (activeMessages.has(message)) return; // 相同提示未消失时不重复弹出
-      activeMessages.add(message);
-
-      const el = document.createElement('div');
-      el.className = `toast ${TYPE_CLASS[type] ?? TYPE_CLASS.info}`;
-      el.textContent = message;
-      container.appendChild(el);
-      requestAnimationFrame(() => el.classList.add('toast--in'));
-
-      const dismiss = () => {
-        activeMessages.delete(message);
-        el.classList.remove('toast--in');
-        el.addEventListener('transitionend', () => el.remove(), { once: true });
-        setTimeout(() => el.remove(), 600); // transitionend 未触发时的兜底
-      };
-      el.addEventListener('click', dismiss, { once: true });
-      setTimeout(dismiss, duration);
-    };
-  })();
-
-  /* =====================================================
    * 标签页切换
    * ===================================================== */
   const tabButtons = [...document.querySelectorAll('.tab-btn')];
@@ -206,7 +169,7 @@
   };
 
   /* ---------- 暴露公共接口 ---------- */
-  window.SubnetTool = { toast, t, registerI18n, onLangChange, createBitMask };
+  window.SubnetTool = { t, registerI18n, onLangChange, createBitMask };
 
   // 三个脚本都执行完毕、DOM 就绪后统一渲染文案并触发页面初始化计算
   document.addEventListener('DOMContentLoaded', () => applyLang());

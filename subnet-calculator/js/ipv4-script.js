@@ -5,7 +5,7 @@
 (() => {
   'use strict';
 
-  const { toast, t, registerI18n, onLangChange, createBitMask } = window.SubnetTool;
+  const { t, registerI18n, onLangChange, createBitMask } = window.SubnetTool;
   const $ = (id) => document.getElementById(id);
 
   /* ---------- 页面文案（中英文） ---------- */
@@ -49,13 +49,22 @@
     for (const field of Object.keys(resultEls)) setResult(field, '-');
   };
 
+  /* ---------- 地址标题行右侧的常驻错误提示 ---------- */
+  const errorEl = $('v4-error');
+
+  /** key 为 i18n 词条 key；传 null 清除提示。输入有效时立即消失 */
+  function setError(key) {
+    errorEl.textContent = key ? t(key) : '';
+    errorEl.hidden = !key;
+  }
+
   /* ---------- 子网掩码位图（4 行 8 列 = 32 位） ---------- */
   const maskBits = createBitMask($('mask-bits'), {
     total: 32,
     columns: 8,
     value: 24,
     bitLabel: (n) => t('bitAria', { n }),
-    onChange: () => calculate(false),
+    onChange: () => calculate(),
   });
 
   /* ---------- 分段 IP 输入辅助 ---------- */
@@ -74,17 +83,15 @@
   function setIp(ip) {
     const parts = ip.split('.');
     octetInputs.forEach((input, i) => { input.value = parts[i] ?? ''; });
-    calculate(false);
+    calculate();
   }
 
   function renderOctetAria() {
     octetInputs.forEach((input, i) => input.setAttribute('aria-label', t('v4OctetAria', { n: i + 1 })));
   }
 
-  let invalidToastShown = false; // 无效提示仅在“由有效转为无效”时弹出一次，避免连续输入时刷屏
-
   /* ---------- 核心计算（输入变化时自动触发） ---------- */
-  function calculate(showError = true) {
+  function calculate() {
     const bits = maskBits.value;
 
     const values = octetValues();
@@ -95,17 +102,10 @@
 
     if (!isComplete() || hasInvalid) {
       resetResults();
-      if (hasInvalid) {
-        if (showError && !invalidToastShown) {
-          toast(t('v4Invalid'), 'error');
-          invalidToastShown = true;
-        }
-      } else {
-        invalidToastShown = false;
-      }
+      setError(hasInvalid ? 'v4Invalid' : null);
       return;
     }
-    invalidToastShown = false;
+    setError(null);
 
     const ipInt = ip2int(values.map(Number));
     const maskInt = cidrToMask(bits);
@@ -182,7 +182,7 @@
       input.value = '';
       input.classList.remove('invalid');
     });
-    invalidToastShown = false;
+    setError(null);
     resetResults();
     focusOctet(0);
   });
@@ -191,7 +191,7 @@
   onLangChange(() => {
     maskBits.refresh();
     renderOctetAria();
-    calculate(false);
+    calculate();
   });
 
   renderOctetAria();

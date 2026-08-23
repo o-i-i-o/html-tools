@@ -26,7 +26,10 @@
         <div class="panel panel-input">
           <div class="panel-body">
             <div class="form-group">
-              <label for="octet-1" data-i18n="v4IpLabel">IP 地址</label>
+              <div class="form-label-row">
+                <label for="octet-1" data-i18n="v4IpLabel">IP 地址</label>
+                <span class="field-error" id="v4-error" role="alert" hidden></span>
+              </div>
               <div class="octet-row" id="ipv4-octets">
                 <input type="text" id="octet-1" class="octet-input" value="192" inputmode="numeric" autocomplete="off">
                 <span class="octet-dot">.</span>
@@ -87,7 +90,10 @@
         <div class="panel panel-input">
           <div class="panel-body">
             <div class="form-group">
-              <label for="ipv6-address" data-i18n="v6IpLabel">IPv6 地址</label>
+              <div class="form-label-row">
+                <label for="ipv6-address" data-i18n="v6IpLabel">IPv6 地址</label>
+                <span class="field-error" id="v6-error" role="alert" hidden></span>
+              </div>
               <div class="input-row">
                 <input type="text" id="ipv6-address" class="text-input" value="2001:db8::1"
                        placeholder="例如: 2001:db8::1" data-i18n-placeholder="v6IpPlaceholder"

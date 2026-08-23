@@ -6,7 +6,7 @@
 (() => {
   'use strict';
 
-  const { toast, t, registerI18n, onLangChange, createBitMask } = window.SubnetTool;
+  const { t, registerI18n, onLangChange, createBitMask } = window.SubnetTool;
   const $ = (id) => document.getElementById(id);
 
   /* ---------- 页面文案（中英文） ---------- */
@@ -156,6 +156,15 @@
     for (const el of Object.values(resultEls)) el.textContent = '-';
   };
 
+  /* ---------- 地址标题行右侧的常驻错误提示 ---------- */
+  const errorEl = $('v6-error');
+
+  /** key 为 i18n 词条 key（expandIPv6 抛出的 Error.message）；传 null 清除提示 */
+  function setError(key) {
+    errorEl.textContent = key ? t(key) : '';
+    errorEl.hidden = !key;
+  }
+
   /* ---------- 前缀长度位图（8 行 16 列 = 128 位） ---------- */
   const prefixBits = createBitMask($('prefix-bits'), {
     total: 128,
@@ -163,20 +172,18 @@
     value: 64,
     gapAfterRow: 3, // 第 4 行（/64 边界）之后加大间距，分隔前半段与后半段
     bitLabel: (n) => t('bitAria', { n }),
-    onChange: () => calculate(false),
+    onChange: () => calculate(),
   });
 
-  let invalidToastShown = false; // 无效提示仅在“由有效转为无效”时弹出一次
-
   /* ---------- 核心计算（输入变化时自动触发） ---------- */
-  function calculate(showError = true) {
+  function calculate() {
     const prefix = prefixBits.value;
 
     const text = addressInput.value.trim();
     if (text === '') {
       addressInput.classList.remove('invalid');
-      invalidToastShown = false;
       resetResults();
+      setError(null);
       return;
     }
 
@@ -186,14 +193,11 @@
     } catch ({ message }) {
       addressInput.classList.add('invalid');
       resetResults();
-      if (showError && !invalidToastShown) {
-        toast(t(message), 'error');
-        invalidToastShown = true;
-      }
+      setError(message);
       return;
     }
     addressInput.classList.remove('invalid');
-    invalidToastShown = false;
+    setError(null);
 
     const ip = toBigInt(expanded);
     const hostMask = (1n << BigInt(128 - prefix)) - 1n;
@@ -225,7 +229,7 @@
   $('ipv6-clear-btn').addEventListener('click', () => {
     addressInput.value = '';
     addressInput.classList.remove('invalid');
-    invalidToastShown = false;
+    setError(null);
     resetResults();
     addressInput.focus();
   });
@@ -233,6 +237,6 @@
   // 语言切换：更新位图 aria 文案并重算计算结果文案
   onLangChange(() => {
     prefixBits.refresh();
-    calculate(false);
+    calculate();
   });
 })();

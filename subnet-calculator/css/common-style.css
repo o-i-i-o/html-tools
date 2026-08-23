@@ -1,7 +1,7 @@
 /* =====================================================
    子网计算器 公共样式
    包含：基础重置 / 顶部导航与标签页 / 语言切换按钮 / 双栏面板
-        / 表单控件 / 位图掩码编辑器 / 计算结果列表 / Toast 提示
+        / 表单控件与常驻错误提示 / 位图掩码编辑器 / 计算结果列表
    各页面专属样式见 ipv4-style.css、ipv6-style.css
    ===================================================== */
 
@@ -34,8 +34,6 @@ body {
 }
 
 .header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 0 20px;
   display: flex;
   align-items: center;
@@ -93,9 +91,6 @@ body {
 /* ---------- 页面主体与双栏面板 ---------- */
 .page {
   flex: 1;
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
   padding: 20px 20px 40px;
 }
 
@@ -104,7 +99,7 @@ body {
 .container {
   display: flex;
   gap: 16px;
-  height: 480px;
+  height: 80%;
   min-height: 420px;
 }
 
@@ -117,9 +112,13 @@ body {
   overflow: hidden;
 }
 
-.panel-input { width: 35%; flex-shrink: 0; }
+.panel-input { width: 45%; flex-shrink: 0; }
 
-.panel-result { flex: 1; min-width: 0; background: #f8f5ed; }
+.panel-result { 
+  flex: 1; 
+  min-width: 0; 
+  background: #f8f5ed; 
+}
 
 .panel-header {
   padding: 10px 15px;
@@ -137,10 +136,26 @@ body {
   margin-bottom: 20px;
 }
 
-.form-group > label {
+.form-label-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.form-group label {
   font-size: 13px;
   font-weight: 700;
   color: #6e6a60;
+}
+
+/* 地址标题行右侧的常驻错误提示：输入无效时显示，恢复有效后消失 */
+.field-error {
+  color: #cc6a5c;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .text-input {
@@ -269,43 +284,6 @@ body {
   font-family: Consolas, Monaco, "Courier New", monospace;
   word-break: break-all;
 }
-
-/* ---------- Toast 提示 ---------- */
-.toast-container {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  pointer-events: none;
-}
-
-.toast {
-  pointer-events: auto;
-  cursor: pointer;
-  min-width: 240px;
-  max-width: 420px;
-  padding: 11px 16px;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 14px;
-  line-height: 1.5;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-  opacity: 0;
-  transform: translateY(-12px);
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-.toast--in { opacity: 1; transform: none; }
-
-.toast--info { background: #5b84a6; }
-.toast--success { background: #5f915e; }
-.toast--warning { background: #b8863b; }
-.toast--error { background: #c96458; }
 
 /* ---------- 响应式：窄屏时上下堆叠 ---------- */
 @media (max-width: 900px) {

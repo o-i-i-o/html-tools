@@ -9,7 +9,7 @@
 /* =====================================================
    子网计算器 公共样式
    包含：基础重置 / 顶部导航与标签页 / 语言切换按钮 / 双栏面板
-        / 表单控件 / 位图掩码编辑器 / 计算结果列表 / Toast 提示
+        / 表单控件与常驻错误提示 / 位图掩码编辑器 / 计算结果列表
    各页面专属样式见 ipv4-style.css、ipv6-style.css
    ===================================================== */
 
@@ -145,10 +145,26 @@ body {
   margin-bottom: 20px;
 }
 
-.form-group > label {
+.form-label-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.form-group label {
   font-size: 13px;
   font-weight: 700;
   color: #6e6a60;
+}
+
+/* 地址标题行右侧的常驻错误提示：输入无效时显示，恢复有效后消失 */
+.field-error {
+  color: #cc6a5c;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .text-input {
@@ -296,43 +312,6 @@ body {
   word-break: break-all;
 }
 
-/* ---------- Toast 提示 ---------- */
-.toast-container {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  pointer-events: none;
-}
-
-.toast {
-  pointer-events: auto;
-  cursor: pointer;
-  min-width: 240px;
-  max-width: 420px;
-  padding: 11px 16px;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 14px;
-  line-height: 1.5;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-  opacity: 0;
-  transform: translateY(-12px);
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-.toast--in { opacity: 1; transform: none; }
-
-.toast--info { background: #5b84a6; }
-.toast--success { background: #5f915e; }
-.toast--warning { background: #b8863b; }
-.toast--error { background: #c96458; }
-
 /* ---------- 响应式：窄屏时上下堆叠 ---------- */
 @media (max-width: 900px) {
   .container { flex-direction: column; height: auto; min-height: 0; }
@@ -426,7 +405,10 @@ body {
         <div class="panel panel-input">
           <div class="panel-body">
             <div class="form-group">
-              <label for="octet-1" data-i18n="v4IpLabel">IPv4 地址</label>
+              <div class="form-label-row">
+                <label for="octet-1" data-i18n="v4IpLabel">IPv4 地址</label>
+                <span class="field-error" id="v4-error" role="alert" hidden></span>
+              </div>
               <div class="octet-row" id="ipv4-octets">
                 <input type="text" id="octet-1" class="octet-input" value="192" inputmode="numeric" autocomplete="off">
                 <span class="octet-dot">.</span>
@@ -487,7 +469,10 @@ body {
         <div class="panel panel-input">
           <div class="panel-body">
             <div class="form-group">
-              <label for="ipv6-address" data-i18n="v6IpLabel">IPv6 地址</label>
+              <div class="form-label-row">
+                <label for="ipv6-address" data-i18n="v6IpLabel">IPv6 地址</label>
+                <span class="field-error" id="v6-error" role="alert" hidden></span>
+              </div>
               <div class="input-row">
                 <input type="text" id="ipv6-address" class="text-input" value="2001:db8::1"
                        placeholder="例如: 2001:db8::1" data-i18n-placeholder="v6IpPlaceholder"
@@ -551,7 +536,7 @@ body {
 /* =====================================================
  * 子网计算器 公共脚本
  * 提供：中英文 i18n（参照 password-standalone 的实现方式）
- *      / 标签页切换 / Toast 提示 / 位图掩码编辑器
+ *      / 标签页切换 / 位图掩码编辑器
  * 本文件需在 ipv4-script.js、ipv6-script.js 之前加载
  * ===================================================== */
 (() => {
@@ -639,43 +624,6 @@ body {
   }
 
   /* =====================================================
-   * 轻量 Toast 提示
-   * ===================================================== */
-  const toast = (() => {
-    const container = document.createElement('div');
-    container.className = 'toast-container';
-    document.body.appendChild(container);
-
-    const TYPE_CLASS = {
-      info: 'toast--info',
-      success: 'toast--success',
-      warning: 'toast--warning',
-      error: 'toast--error',
-    };
-    const activeMessages = new Set();
-
-    return (message, type = 'info', duration = 3000) => {
-      if (activeMessages.has(message)) return; // 相同提示未消失时不重复弹出
-      activeMessages.add(message);
-
-      const el = document.createElement('div');
-      el.className = `toast ${TYPE_CLASS[type] ?? TYPE_CLASS.info}`;
-      el.textContent = message;
-      container.appendChild(el);
-      requestAnimationFrame(() => el.classList.add('toast--in'));
-
-      const dismiss = () => {
-        activeMessages.delete(message);
-        el.classList.remove('toast--in');
-        el.addEventListener('transitionend', () => el.remove(), { once: true });
-        setTimeout(() => el.remove(), 600); // transitionend 未触发时的兜底
-      };
-      el.addEventListener('click', dismiss, { once: true });
-      setTimeout(dismiss, duration);
-    };
-  })();
-
-  /* =====================================================
    * 标签页切换
    * ===================================================== */
   const tabButtons = [...document.querySelectorAll('.tab-btn')];
@@ -756,7 +704,7 @@ body {
   };
 
   /* ---------- 暴露公共接口 ---------- */
-  window.SubnetTool = { toast, t, registerI18n, onLangChange, createBitMask };
+  window.SubnetTool = { t, registerI18n, onLangChange, createBitMask };
 
   // 三个脚本都执行完毕、DOM 就绪后统一渲染文案并触发页面初始化计算
   document.addEventListener('DOMContentLoaded', () => applyLang());
@@ -770,7 +718,7 @@ body {
 (() => {
   'use strict';
 
-  const { toast, t, registerI18n, onLangChange, createBitMask } = window.SubnetTool;
+  const { t, registerI18n, onLangChange, createBitMask } = window.SubnetTool;
   const $ = (id) => document.getElementById(id);
 
   /* ---------- 页面文案（中英文） ---------- */
@@ -814,13 +762,22 @@ body {
     for (const field of Object.keys(resultEls)) setResult(field, '-');
   };
 
+  /* ---------- 地址标题行右侧的常驻错误提示 ---------- */
+  const errorEl = $('v4-error');
+
+  /** key 为 i18n 词条 key；传 null 清除提示。输入有效时立即消失 */
+  function setError(key) {
+    errorEl.textContent = key ? t(key) : '';
+    errorEl.hidden = !key;
+  }
+
   /* ---------- 子网掩码位图（4 行 8 列 = 32 位） ---------- */
   const maskBits = createBitMask($('mask-bits'), {
     total: 32,
     columns: 8,
     value: 24,
     bitLabel: (n) => t('bitAria', { n }),
-    onChange: () => calculate(false),
+    onChange: () => calculate(),
   });
 
   /* ---------- 分段 IP 输入辅助 ---------- */
@@ -839,17 +796,15 @@ body {
   function setIp(ip) {
     const parts = ip.split('.');
     octetInputs.forEach((input, i) => { input.value = parts[i] ?? ''; });
-    calculate(false);
+    calculate();
   }
 
   function renderOctetAria() {
     octetInputs.forEach((input, i) => input.setAttribute('aria-label', t('v4OctetAria', { n: i + 1 })));
   }
 
-  let invalidToastShown = false; // 无效提示仅在“由有效转为无效”时弹出一次，避免连续输入时刷屏
-
   /* ---------- 核心计算（输入变化时自动触发） ---------- */
-  function calculate(showError = true) {
+  function calculate() {
     const bits = maskBits.value;
 
     const values = octetValues();
@@ -860,17 +815,10 @@ body {
 
     if (!isComplete() || hasInvalid) {
       resetResults();
-      if (hasInvalid) {
-        if (showError && !invalidToastShown) {
-          toast(t('v4Invalid'), 'error');
-          invalidToastShown = true;
-        }
-      } else {
-        invalidToastShown = false;
-      }
+      setError(hasInvalid ? 'v4Invalid' : null);
       return;
     }
-    invalidToastShown = false;
+    setError(null);
 
     const ipInt = ip2int(values.map(Number));
     const maskInt = cidrToMask(bits);
@@ -947,7 +895,7 @@ body {
       input.value = '';
       input.classList.remove('invalid');
     });
-    invalidToastShown = false;
+    setError(null);
     resetResults();
     focusOctet(0);
   });
@@ -956,7 +904,7 @@ body {
   onLangChange(() => {
     maskBits.refresh();
     renderOctetAria();
-    calculate(false);
+    calculate();
   });
 
   renderOctetAria();
@@ -971,7 +919,7 @@ body {
 (() => {
   'use strict';
 
-  const { toast, t, registerI18n, onLangChange, createBitMask } = window.SubnetTool;
+  const { t, registerI18n, onLangChange, createBitMask } = window.SubnetTool;
   const $ = (id) => document.getElementById(id);
 
   /* ---------- 页面文案（中英文） ---------- */
@@ -1121,6 +1069,15 @@ body {
     for (const el of Object.values(resultEls)) el.textContent = '-';
   };
 
+  /* ---------- 地址标题行右侧的常驻错误提示 ---------- */
+  const errorEl = $('v6-error');
+
+  /** key 为 i18n 词条 key（expandIPv6 抛出的 Error.message）；传 null 清除提示 */
+  function setError(key) {
+    errorEl.textContent = key ? t(key) : '';
+    errorEl.hidden = !key;
+  }
+
   /* ---------- 前缀长度位图（8 行 16 列 = 128 位） ---------- */
   const prefixBits = createBitMask($('prefix-bits'), {
     total: 128,
@@ -1128,20 +1085,18 @@ body {
     value: 64,
     gapAfterRow: 3, // 第 4 行（/64 边界）之后加大间距，分隔前半段与后半段
     bitLabel: (n) => t('bitAria', { n }),
-    onChange: () => calculate(false),
+    onChange: () => calculate(),
   });
 
-  let invalidToastShown = false; // 无效提示仅在“由有效转为无效”时弹出一次
-
   /* ---------- 核心计算（输入变化时自动触发） ---------- */
-  function calculate(showError = true) {
+  function calculate() {
     const prefix = prefixBits.value;
 
     const text = addressInput.value.trim();
     if (text === '') {
       addressInput.classList.remove('invalid');
-      invalidToastShown = false;
       resetResults();
+      setError(null);
       return;
     }
 
@@ -1151,14 +1106,11 @@ body {
     } catch ({ message }) {
       addressInput.classList.add('invalid');
       resetResults();
-      if (showError && !invalidToastShown) {
-        toast(t(message), 'error');
-        invalidToastShown = true;
-      }
+      setError(message);
       return;
     }
     addressInput.classList.remove('invalid');
-    invalidToastShown = false;
+    setError(null);
 
     const ip = toBigInt(expanded);
     const hostMask = (1n << BigInt(128 - prefix)) - 1n;
@@ -1190,7 +1142,7 @@ body {
   $('ipv6-clear-btn').addEventListener('click', () => {
     addressInput.value = '';
     addressInput.classList.remove('invalid');
-    invalidToastShown = false;
+    setError(null);
     resetResults();
     addressInput.focus();
   });
@@ -1198,7 +1150,7 @@ body {
   // 语言切换：更新位图 aria 文案并重算计算结果文案
   onLangChange(() => {
     prefixBits.refresh();
-    calculate(false);
+    calculate();
   });
 })();
 
