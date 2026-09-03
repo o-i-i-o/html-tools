@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crontab执行时间计算器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- Crontab计算工具 -->
+            <div class="tool-panel active" id="crontab-calculator-tool">
+                <div class="crontab-container">
+                    <!-- 左侧：输入配置模块 -->
+                    <div class="crontab-input-section">
+                        
+                        <!-- 参数配置表单 -->
+                        <div class="crontab-config-form">
+                            <!-- Crontab表达式输入 -->
+                            <div class="config-section">
+                                <h3>Crontab表达式</h3>
+                                <div class="form-group">
+                                    <div class="input-with-action">
+                                        <input type="text" id="crontabExpression" placeholder="0 */6 * * *" value="0 */6 * * *" class="key-input">
+                                        <button class="btn-secondary" id="openGeneratorBtn" title="图形化生成 crontab 表达式">
+                                            <span class="btn-icon">⚙️</span> 图形化生成
+                                        </button>
+                                        <button class="btn-primary" id="calculateBtn">生成执行时间</button>
+                                    </div>
+                                    <small>输入标准的 crontab 表达式（5个字段：分 时 日 月 星期），如：0 */6 * * *</small>
+                                </div>
+                            </div>
+
+                            <!-- 常用示例 -->
+                            <div class="config-section">
+                                <h3>常用示例</h3>
+                                <div class="example-list">
+                                    <div class="example-item" data-expression="* * * * *">
+                                        <code>* * * * *</code>
+                                        <span>每1分钟执行一次</span>
+                                    </div>
+                                    <div class="example-item" data-expression="*/10 * * * *">
+                                        <code>*/10 * * * *</code>
+                                        <span>每隔10分钟执行一次</span>
+                                    </div>
+                                    <div class="example-item" data-expression="0 */1 * * *">
+                                        <code>0 */1 * * *</code>
+                                        <span>每隔1小时执行一次</span>
+                                    </div>
+                                    <div class="example-item" data-expression="30 21 * * *">
+                                        <code>30 21 * * *</code>
+                                        <span>每晚的21:30执行</span>
+                                    </div>
+                                    <div class="example-item" data-expression="3,15 * * * *">
+                                        <code>3,15 * * * *</code>
+                                        <span>每小时的第3和第15分钟执行</span>
+                                    </div>
+                                    <div class="example-item" data-expression="3,15 8-11 * * *">
+                                        <code>3,15 8-11 * * *</code>
+                                        <span>在上午8点到11点的第3和第15分钟执行</span>
+                                    </div>
+                                    <div class="example-item" data-expression="0 0 L * *">
+                                        <code>0 0 L * *</code>
+                                        <span>每月的最后1天执行</span>
+                                    </div>
+                                    <div class="example-item" data-expression="0 0 * * 0">
+                                        <code>0 0 * * 0</code>
+                                        <span>每周日的0点执行</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 执行次数配置 -->
+                            <div class="config-section">
+                                <div class="form-group">
+                                    <label for="executionCount">显示次数</label>
+                                    <input type="number" id="executionCount" value="10" min="1" max="100" step="1">
+                                    <small>显示未来多少次执行时间（1-100次）</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧：结果显示模块 -->
+                    <div class="crontab-output-section">
+                        
+                        <!-- 结果展示 -->
+                        <div class="crontab-result" id="crontabResult">
+                            <div class="result-placeholder" id="resultPlaceholder">
+                                <div class="placeholder-icon">⏰</div>
+                                <div class="placeholder-text">
+                                    输入 crontab 表达式后点击"生成执行时间"<br>
+                                    即可查看未来执行时间
+                                </div>
+                            </div>
+                            <div class="result-content" id="resultContent" style="display: none;"></div>
+                        </div>
+                        
+                        <!-- 错误信息展示 -->
+                        <div class="crontab-error" id="crontabError" style="display: none;">
+                            <h4>计算错误</h4>
+                            <div class="error-message" id="errorMessage"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crontab计算工具知识介绍和使用说明 -->
+            <div class="documentation-section">
+
+                <!-- Crontab基础知识介绍 -->
+                <div class="doc-panel">
+                    <div class="doc-content">
+                        <h3>Crontab表达式说明</h3>
+                        <div class="character-set">
+                            <div class="charset-item">
+                                <h4>表达式格式</h4>
+                                <code>分 时 日 月 星期 [用户] [命令]</code>
+                                <p>标准crontab表达式由5个时间字段组成，可选用户和命令字段。本工具只需输入前5个时间字段即可。</p>
+                            </div>
+                            <div class="charset-item">
+                                <h4>字段说明</h4>
+                                <code>分(0-59) 时(0-23) 日(1-31) 月(1-12) 星期(0-7)</code>
+                                <p>每个字段都有其有效范围，星期字段中0和7都表示周日。超出范围的值会导致表达式无效。</p>
+                            </div>
+                            <div class="charset-item">
+                                <h4>特殊字符</h4>
+                                <code>* - , /</code>
+                                <p><strong>*</strong> 表示所有可能的值，<strong>-</strong> 表示范围，<strong>,</strong> 表示列表，<strong>/</strong> 表示步长。</p>
+                            </div>
+                            <div class="charset-item">
+                                <h4>特殊值</h4>
+                                <code>L W #</code>
+                                <p><strong>L</strong> 表示最后一天，<strong>W</strong> 表示工作日，<strong>#</strong> 表示第几个星期几（部分系统支持）。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Crontab 图形化生成器模态框 -->
+    <div class="auth-modal" id="cronGeneratorModal">
+        <div class="auth-modal-overlay"></div>
+        <div class="auth-modal-container cron-generator-modal">
+            <button class="auth-modal-close" id="cronGeneratorClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="cron-generator-header">
+                <h2 class="cron-generator-title">图形化配置 Crontab</h2>
+                <p class="cron-generator-subtitle">通过可视化界面生成 cron 表达式</p>
+            </div>
+            
+            <div class="cron-generator-tabs">
+                <div class="cron-tab active" data-tab="minute">分钟</div>
+                <div class="cron-tab" data-tab="hour">小时</div>
+                <div class="cron-tab" data-tab="day">日期</div>
+                <div class="cron-tab" data-tab="month">月份</div>
+                <div class="cron-tab" data-tab="weekday">星期</div>
+            </div>
+
+            <div class="cron-generator-body">
+                <!-- 分钟面板 -->
+                <div class="cron-panel active" id="panel-minute">
+                    <div class="cron-mode-options">
+                        <label class="cron-mode-option"><input type="radio" name="mode-minute" value="all" checked> 每分钟</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-minute" value="step"> 周期/步长</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-minute" value="list"> 指定分钟</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-minute" value="range"> 范围</label>
+                    </div>
+                    <div class="cron-mode-content mode-step" style="display: none;">
+                        从第 <input type="number" class="cron-number-input" value="0" min="0" max="59"> 分钟开始，每隔 <input type="number" class="cron-number-input" value="1" min="1" max="59"> 分钟执行一次
+                    </div>
+                    <div class="cron-mode-content mode-list" style="display: none;">
+                        <div class="cron-checkbox-grid grid-60"></div>
+                    </div>
+                    <div class="cron-mode-content mode-range" style="display: none;">
+                        从第 <input type="number" class="cron-number-input" value="0" min="0" max="59"> 分钟 到 第 <input type="number" class="cron-number-input" value="59" min="0" max="59"> 分钟之间执行
+                    </div>
+                </div>
+
+                <!-- 小时面板 -->
+                <div class="cron-panel" id="panel-hour" style="display: none;">
+                    <div class="cron-mode-options">
+                        <label class="cron-mode-option"><input type="radio" name="mode-hour" value="all" checked> 每小时</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-hour" value="step"> 周期/步长</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-hour" value="list"> 指定小时</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-hour" value="range"> 范围</label>
+                    </div>
+                    <div class="cron-mode-content mode-step" style="display: none;">
+                        从第 <input type="number" class="cron-number-input" value="0" min="0" max="23"> 小时开始，每隔 <input type="number" class="cron-number-input" value="1" min="1" max="23"> 小时执行一次
+                    </div>
+                    <div class="cron-mode-content mode-list" style="display: none;">
+                        <div class="cron-checkbox-grid grid-24"></div>
+                    </div>
+                    <div class="cron-mode-content mode-range" style="display: none;">
+                        从第 <input type="number" class="cron-number-input" value="0" min="0" max="23"> 小时 到 第 <input type="number" class="cron-number-input" value="23" min="0" max="23"> 小时之间执行
+                    </div>
+                </div>
+
+                <!-- 日期面板 -->
+                <div class="cron-panel" id="panel-day" style="display: none;">
+                    <div class="cron-mode-options">
+                        <label class="cron-mode-option"><input type="radio" name="mode-day" value="all" checked> 每天</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-day" value="step"> 周期/步长</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-day" value="list"> 指定日期</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-day" value="last"> 最后一天 (L)</label>
+                    </div>
+                    <div class="cron-mode-content mode-step" style="display: none;">
+                        从第 <input type="number" class="cron-number-input" value="1" min="1" max="31"> 日开始，每隔 <input type="number" class="cron-number-input" value="1" min="1" max="31"> 日执行一次
+                    </div>
+                    <div class="cron-mode-content mode-list" style="display: none;">
+                        <div class="cron-checkbox-grid grid-31"></div>
+                    </div>
+                    <div class="cron-mode-content mode-last" style="display: none;">
+                        在本月的最后一天执行
+                    </div>
+                </div>
+
+                <!-- 月份面板 -->
+                <div class="cron-panel" id="panel-month" style="display: none;">
+                    <div class="cron-mode-options">
+                        <label class="cron-mode-option"><input type="radio" name="mode-month" value="all" checked> 每月</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-month" value="list"> 指定月份</label>
+                    </div>
+                    <div class="cron-mode-content mode-list" style="display: none;">
+                        <div class="cron-checkbox-grid grid-12"></div>
+                    </div>
+                </div>
+
+                <!-- 星期面板 -->
+                <div class="cron-panel" id="panel-weekday" style="display: none;">
+                    <div class="cron-mode-options">
+                        <label class="cron-mode-option"><input type="radio" name="mode-weekday" value="all" checked> 每星期</label>
+                        <label class="cron-mode-option"><input type="radio" name="mode-weekday" value="list"> 指定星期</label>
+                    </div>
+                    <div class="cron-mode-content mode-list" style="display: none;">
+                        <div class="cron-checkbox-grid grid-7"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cron-generator-preview">
+                <div class="preview-label">当前生成表达式:</div>
+                <div class="preview-value" id="cronPreviewValue">* * * * *</div>
+                <div class="preview-desc" id="cronPreviewDesc">每分钟执行一次</div>
+            </div>
+
+            <div class="cron-generator-footer">
+                <button class="btn-secondary" id="cronResetBtn">重置</button>
+                <div class="spacer"></div>
+                <button class="btn-secondary" id="cronCancelBtn">取消</button>
+                <button class="btn-primary" id="cronApplyBtn">应用配置</button>
+            </div>
+        </div>
+    </div>
+         
+    <script src="crontab-calculator.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1072 @@
+/* ==================================================================
+   Crontab 执行时间计算器 - 样式
+   参考「随机密码生成工具」的浅色风格：白底、#409eff 主色、
+   4px 圆角、#dcdfe6 细边框
+   ================================================================== */
+
+/* 基础样式重置 */
+* {
+    margin: 0;
+}
+
+/* CSS 变量定义 */
+:root {
+    /* 主色 - 蓝色 */
+    --primary-base: #409eff;
+    --primary-hover-base: #66b1ff;
+    --primary-bg-base: #ecf5ff;
+    --primary-border-base: #b3d8ff;
+    --primary-border-light: #c6e2ff;
+
+    /* 背景色 */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f7fa;
+    --bg-tertiary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-hover: #f5f7fa;
+
+    /* 文字色 */
+    --text-title: #303133;
+    --text-regular: #606266;
+    --text-secondary: #909399;
+    --text-tertiary: #c0c4cc;
+    --text-muted: #606266;
+
+    /* 边框色 */
+    --border-deep: #dcdfe6;
+    --border-color: #dcdfe6;
+    --border-light: #e4e7ed;
+
+    /* 语义色 */
+    --accent-color: #409eff;
+    --accent-hover: #66b1ff;
+    --accent-light: #409eff;
+    --success-color: #67c23a;
+    --error-color: #f56c6c;
+    --error-hover: #f78989;
+    --error-light: #fef0f0;
+    --warning-color: #e6a23c;
+    --warning-light: #fdf6ec;
+
+    /* 字体家族 - 与密码生成工具一致 */
+    --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "BlinkMacSystemFont", Oxygen, Helvetica, Arial;
+    --font-family-mono: "Courier New", Courier, monospace;
+}
+
+body {
+    color: #333;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    font-family: var(--font-family-base);
+    background-color: var(--bg-primary);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+    scrollbar-width: thin;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+input,
+button,
+select,
+textarea {
+    outline: none;
+    border: none;
+    color: var(--text-regular);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+}
+
+button {
+    background: unset;
+    cursor: pointer;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #bbb;
+}
+
+/* ==================================================================
+   页面布局
+   ================================================================== */
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 10px 60px;
+}
+
+.tool-panel {
+    display: none;
+    width: 100%;
+}
+
+.tool-panel.active {
+    display: block;
+}
+
+/* 区块标题行 */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    min-height: 32px;
+}
+
+.section-header .title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-title);
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ==================================================================
+   按钮
+   ================================================================== */
+
+.btn-primary,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 32px;
+    padding: 9px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.1s;
+    user-select: none;
+}
+
+/* 类型：primary（浅蓝底 + 蓝字，悬停实心蓝） */
+.btn-primary {
+    color: var(--primary-base);
+    background: var(--primary-bg-base);
+    border-color: var(--primary-border-base);
+}
+
+.btn-primary:hover {
+    background: var(--primary-base);
+    border-color: var(--primary-base);
+    color: #fff;
+}
+
+/* 类型：secondary（默认按钮，悬停蓝字浅蓝边） */
+.btn-secondary {
+    color: var(--text-muted);
+    background: #fff;
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    color: var(--primary-base);
+    background: var(--primary-bg-base);
+    border-color: var(--primary-border-light);
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled,
+button:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+/* ==================================================================
+   输入框
+   ================================================================== */
+
+input[type="text"],
+input[type="number"] {
+    height: 32px;
+    padding: 0 15px;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-regular);
+    font-size: 13px;
+}
+
+input[type="text"]:not(:focus):hover,
+input[type="number"]:not(:focus):hover {
+    border-color: #c0c4cc;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: var(--primary-base);
+}
+
+#crontabExpression {
+    font-family: var(--font-family-mono);
+}
+
+/* 带有操作按钮的输入框 */
+.input-with-action {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.input-with-action input {
+    flex: 1;
+    width: 100%;
+}
+
+/* ==================================================================
+   Crontab 计算工具
+   ================================================================== */
+
+/* 主容器布局 */
+.crontab-container {
+    display: flex;
+    gap: 20px;
+}
+
+/* 左侧输入区域 */
+.crontab-input-section {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 右侧输出区域 */
+.crontab-output-section {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 配置表单 / 结果面板 */
+.crontab-config-form,
+.crontab-result {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.crontab-config-form {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.crontab-result {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+/* 配置区域 */
+.config-section {
+    padding-bottom: 24px;
+}
+
+.config-section:last-child {
+    padding-bottom: 0;
+}
+
+.config-section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-title);
+    margin-bottom: 12px;
+}
+
+/* 表单组 */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-title);
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 50%;
+} 
+
+.form-group small {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+/* Crontab通知 */
+.crontab-notice {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    background: var(--primary-bg-base);
+    border: 1px solid var(--primary-border-light);
+    border-radius: 4px;
+    margin-top: 12px;
+}
+
+.notice-icon {
+    font-size: 16px;
+    line-height: 1.4;
+    flex-shrink: 0;
+}
+
+.notice-content {
+    flex: 1;
+}
+
+.notice-content strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-title);
+    margin-bottom: 4px;
+}
+
+.notice-content p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.notice-content code {
+    font-family: var(--font-family-mono);
+    font-size: 12px;
+    color: var(--primary-base);
+    background: #fff;
+    border: 1px solid var(--border-light);
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+
+/* 示例列表 */
+.example-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.example-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.example-item:hover {
+    background: var(--primary-bg-base);
+    border-color: var(--primary-border-light);
+}
+
+.example-item code {
+    font-family: var(--font-family-mono);
+    font-size: 13px;
+    color: var(--primary-base);
+    background: #fff;
+    border: 1px solid var(--border-light);
+    padding: 3px 8px;
+    border-radius: 3px;
+    min-width: 128px;
+    text-align: center;
+}
+
+.example-item span {
+    font-size: 12px;
+    color: var(--text-secondary);
+    flex: 1;
+}
+
+/* 结果占位符 */
+.result-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    text-align: center;
+}
+
+.placeholder-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+
+.placeholder-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* 结果内容 */
+.result-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 结果标题 */
+.result-header {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-title);
+    padding: 10px 14px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+}
+
+/* 执行时间列表（JS 动态生成：ul.time-list > li） */
+.time-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.time-list li {
+    padding: 8px 14px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-family: var(--font-family-mono);
+    font-size: 14px;
+    color: var(--text-title);
+    transition: 0.1s;
+}
+
+.time-list li:hover {
+    border-color: var(--primary-border-light);
+}
+
+/* 错误信息（由 crontab-error 容器控制显隐） */
+.crontab-error {
+    background: var(--error-light);
+    border: 1px solid #fde2e2;
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin-top: 16px;
+}
+
+.crontab-error h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--error-color);
+    margin-bottom: 6px;
+}
+
+.error-message {
+    font-size: 13px;
+    color: var(--error-color);
+    line-height: 1.6;
+}
+
+/* ==================================================================
+   工具文档说明区
+   ================================================================== */
+
+.documentation-section {
+    margin-top: 48px;
+}
+
+.doc-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.doc-panel h2 {
+    background: var(--bg-secondary);
+    color: var(--text-title);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.doc-content {
+    padding: 20px;
+    color: var(--text-regular);
+    line-height: 1.8;
+}
+
+.doc-content p {
+    margin-bottom: 12px;
+}
+
+.doc-content h3 {
+    color: var(--text-title);
+    font-size: 14px;
+    font-weight: 700;
+    margin: 24px 0 12px;
+}
+
+.doc-content h4 {
+    color: var(--text-title);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.doc-content code {
+    font-family: var(--font-family-mono);
+    font-size: 13px;
+    color: var(--primary-base);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    padding: 1px 6px;
+    border-radius: 3px;
+}
+
+/* 表达式说明网格 */
+.character-set {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.charset-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.charset-item code {
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.charset-item p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* 应用场景网格 */
+.use-cases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.use-case {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 16px;
+    transition: 0.1s;
+}
+
+.use-case:hover {
+    border-color: var(--primary-border-light);
+}
+
+.use-case h4 {
+    margin-bottom: 8px;
+}
+
+.use-case code {
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.use-case p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* 命令实例网格 */
+.benefit-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.benefit-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 16px;
+    transition: 0.1s;
+}
+
+.benefit-item:hover {
+    border-color: var(--primary-border-light);
+}
+
+.benefit-item h4 {
+    margin-bottom: 8px;
+}
+
+.benefit-item code {
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.benefit-item p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* ==================================================================
+   图形化生成器模态框
+   ================================================================== */
+
+/* 模态框容器 */
+.auth-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.auth-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-modal.show {
+    opacity: 1;
+}
+
+/* 遮罩层 */
+.auth-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* 模态框容器 */
+.auth-modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
+}
+
+.auth-modal.show .auth-modal-container {
+    transform: scale(1);
+}
+
+/* 关闭按钮 */
+.auth-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: 0.1s;
+}
+
+.auth-modal-close:hover {
+    background: var(--bg-secondary);
+    color: var(--text-title);
+}
+
+/* 生成器弹窗 */
+.cron-generator-modal {
+    max-width: 800px;
+    width: 92vw;
+    max-height: calc(100vh - 32px);
+    padding: 24px;
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.cron-generator-header {
+    margin-bottom: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.cron-generator-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-title);
+    margin-bottom: 6px;
+}
+
+.cron-generator-subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* 选项卡样式 */
+.cron-generator-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 16px;
+    flex-shrink: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.cron-generator-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.cron-tab {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-regular);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: 0.1s;
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.cron-tab:hover {
+    color: var(--primary-base);
+}
+
+.cron-tab.active {
+    color: var(--primary-base);
+    border-bottom-color: var(--primary-base);
+}
+
+/* 面板内容样式 */
+.cron-generator-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-bottom: 16px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 4px;
+}
+
+.cron-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 0;
+}
+
+.cron-mode-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    padding: 12px;
+    background-color: var(--bg-secondary);
+    border-radius: 4px;
+    border: 1px solid var(--border-light);
+    align-items: center;
+}
+
+.cron-mode-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-regular);
+    cursor: pointer;
+}
+
+.cron-mode-option input {
+    accent-color: var(--primary-base);
+    margin: 0;
+}
+
+.cron-mode-content {
+    padding: 4px 2px;
+    font-size: 13px;
+    color: var(--text-regular);
+    overflow-wrap: anywhere;
+}
+
+.cron-number-input {
+    width: 60px !important;
+    display: inline-block !important;
+    text-align: center;
+    padding: 0 5px !important;
+    margin: 0 4px;
+}
+
+/* 复选框网格样式 */
+.cron-checkbox-grid {
+    display: grid;
+    gap: 8px;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    min-height: 0;
+}
+
+.grid-60 { grid-template-columns: repeat(10, 1fr); }
+.grid-24 { grid-template-columns: repeat(6, 1fr); }
+.grid-31 { grid-template-columns: repeat(7, 1fr); }
+.grid-12 { grid-template-columns: repeat(4, 1fr); }
+.grid-7 { grid-template-columns: repeat(7, 1fr); }
+
+/* 复选框选项（JS 动态生成：label.cb-item > input + span） */
+.cb-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 4px;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: var(--font-family-mono);
+    color: var(--text-regular);
+    cursor: pointer;
+    transition: 0.1s;
+    user-select: none;
+}
+
+.cb-item:hover {
+    border-color: var(--primary-base);
+    color: var(--primary-base);
+}
+
+.cb-item:has(input:checked) {
+    background-color: var(--primary-base);
+    border-color: var(--primary-base);
+    color: #fff;
+}
+
+.cb-item:has(input:checked):hover {
+    background-color: var(--primary-hover-base);
+    border-color: var(--primary-hover-base);
+}
+
+.cb-item input {
+    margin: 0;
+    accent-color: var(--primary-base);
+}
+
+/* 预览区域样式 */
+.cron-generator-preview {
+    padding: 14px 16px;
+    background: var(--primary-bg-base);
+    border: 1px solid var(--primary-border-light);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+.preview-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.preview-value {
+    font-family: var(--font-family-mono);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-base);
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+    overflow-wrap: anywhere;
+}
+
+.preview-desc {
+    font-size: 13px;
+    color: var(--text-regular);
+}
+
+/* 底部按钮样式 */
+.cron-generator-footer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.spacer {
+    flex: 1;
+    min-width: 0;
+}
+
+.cron-generator-footer .btn-primary,
+.cron-generator-footer .btn-secondary {
+    flex-shrink: 0;
+}
+
+/* ==================================================================
+   响应式设计
+   ================================================================== */
+
+@media (max-width: 768px) {
+    .crontab-container {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .crontab-config-form,
+    .crontab-result {
+        padding: 16px;
+        max-height: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-content {
+        padding: 16px 12px 40px;
+    }
+
+    #cronGeneratorModal.active {
+        align-items: flex-start;
+        padding: 8px;
+    }
+
+    .cron-generator-modal {
+        width: calc(100vw - 16px);
+        max-width: none;
+        max-height: calc(100dvh - 16px);
+        padding: 16px;
+        border-radius: 8px;
+    }
+
+    .cron-generator-header {
+        margin-bottom: 16px;
+    }
+
+    .cron-generator-tabs {
+        margin-bottom: 12px;
+        gap: 2px;
+    }
+
+    .cron-tab {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .cron-generator-body {
+        margin-bottom: 12px;
+        padding-right: 2px;
+    }
+
+    .cron-mode-options {
+        gap: 10px 12px;
+        padding: 10px;
+    }
+
+    .cron-number-input {
+        width: 52px !important;
+    }
+
+    .cron-checkbox-grid {
+        max-height: min(42vh, 220px);
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .grid-60 { grid-template-columns: repeat(6, 1fr); }
+    .grid-24 { grid-template-columns: repeat(4, 1fr); }
+    .grid-31 { grid-template-columns: repeat(4, 1fr); }
+    .grid-12 { grid-template-columns: repeat(3, 1fr); }
+
+    .preview-value {
+        font-size: 16px;
+        letter-spacing: 1px;
+        word-break: break-all;
+    }
+
+    .input-with-action {
+        flex-wrap: wrap;
+    }
+
+    .example-item {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .example-item code {
+        min-width: 0;
+    }
+
+    .cron-generator-footer {
+        gap: 8px;
+    }
+
+    .spacer {
+        display: none;
+    }
+}
