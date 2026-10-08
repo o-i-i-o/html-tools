@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日期计算器</title>
+  <meta name="description" content="计算两个日期之间的差值；推算若干天、星期、月或工作日之后（前）的日期，并显示农历。">
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --text: #1f2328;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --border: #d1d5db;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.8 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    .page { max-width: 640px; margin: 0 auto; padding: 24px 16px 48px; }
+    h1 { font-size: 1.5rem; margin: 0 0 16px; }
+    h2 { font-size: 1.05rem; margin: 4px 0 12px; }
+    .card {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    label { white-space: nowrap; }
+    input, select, button {
+      font: inherit;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+    }
+    input[type="number"] { width: 7em; }
+    button {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover { background: var(--accent-dark); }
+    .result {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin: 8px 0 0;
+      min-height: 1.6em;
+      overflow-wrap: anywhere;
+    }
+    .lunar { color: var(--muted); margin: 2px 0 0; min-height: 1.6em; }
+    .notes { font-size: 0.92rem; color: var(--muted); }
+    .notes ul { margin: 0 0 8px; padding-left: 1.2em; }
+    .notes summary { cursor: pointer; color: var(--accent-dark); }
+    .holiday-list { margin-top: 8px; }
+  </style>
+</head>
+
+<body>
+<main class="page">
+  <h1>日期计算器</h1>
+
+  <!-- 一、两个日期相差 -->
+  <section class="card">
+    <h2>一、两个日期相差多少天</h2>
+    <form id="diff-form">
+      <div class="form-row">
+        <label for="diff-start">开始日期</label>
+        <input type="date" id="diff-start" min="1901-01-01" max="2099-12-31" required>
+      </div>
+      <div class="form-row">
+        <label for="diff-end">结束日期</label>
+        <input type="date" id="diff-end" min="1901-01-01" max="2099-12-31" required>
+      </div>
+      <div class="form-row">
+        <button type="submit">计算相差</button>
+      </div>
+      <p class="result" id="diff-result" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- 二、日期推算 -->
+  <section class="card">
+    <h2>二、推算几天后（前）的日期</h2>
+    <form id="add-form">
+      <div class="form-row">
+        <label for="add-date">基准日期</label>
+        <input type="date" id="add-date" min="1901-01-01" max="2099-12-31" required>
+      </div>
+      <div class="form-row">
+        <select id="add-dir" aria-label="方向">
+          <option value="1">往后</option>
+          <option value="-1">往前</option>
+        </select>
+        <input type="number" id="add-num" min="0" max="999999" value="100" required aria-label="数量">
+        <select id="add-unit" aria-label="单位">
+          <option value="day">日</option>
+          <option value="workday">工作日</option>
+          <option value="week">星期</option>
+          <option value="month">月</option>
+        </select>
+        <span>的日期</span>
+      </div>
+      <div class="form-row">
+        <button type="submit">推算</button>
+      </div>
+      <p class="result" id="add-result" aria-live="polite"></p>
+      <p class="lunar" id="add-lunar" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- 说明 -->
+  <section class="card notes">
+    <h2>说明</h2>
+    <ul>
+      <li>计算两个日期之间相差几天、几周、几个月；开始日期晚于结束日期时结果为负数。</li>
+      <li>推算某日往后/往前若干日、星期、月或工作日，并显示农历（支持 1901 - 2099 年）。</li>
+      <li>按「月」推算时超出范围的日期自动进位，例如 1 月 31 日往后 1 个月为 3 月 3 日。</li>
+      <li>工作日按法定节假日与调休补班计算，当前数据年份 <span id="work-year"></span>，有效范围 <span id="work-range"></span>；计数不含起始日期、含结束日期。</li>
+    </ul>
+    <details>
+      <summary>查看放假安排</summary>
+      <div class="holiday-list" id="holiday-list"></div>
+    </details>
+  </section>
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>
