@@ -1,5 +1,6 @@
 /* =====================================================
    子网计算器 公共样式
+   色彩基于 Open Color：lime 主色 / gray 中性色 / red 辅助
    包含：基础重置 / 顶部导航与标签页 / 语言切换按钮 / 双栏面板
         / 表单控件与常驻错误提示 / 位图掩码编辑器 / 计算结果列表
    各页面专属样式见 ipv4-style.css、ipv6-style.css
@@ -16,8 +17,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
     "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 14px;
-  color: #c9cd42;
-  background: #ecf3a2;
+  color: #343a40;      /* gray-8 */
+  background: #ffffff;
 }
 
 .hidden { display: none !important; }
@@ -26,8 +27,8 @@ body {
 
 /* ---------- 顶部导航与标签页 ---------- */
 .site-header {
-  background: #fdfcf8;
-  box-shadow: 0 2px 8px rgba(62, 56, 44, 0.06);
+  background: #ffffff;
+  border-bottom: 1px solid #e9ecef;  /* gray-2 */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -44,7 +45,7 @@ body {
   margin: 0 40px 0 0;
   font-size: 18px;
   font-weight: 700;
-  color: #33322d;
+  color: #212529;      /* gray-9 */
   white-space: nowrap;
 }
 
@@ -57,17 +58,17 @@ body {
   border-bottom: 2px solid transparent;
   padding: 0 18px;
   font-size: 14px;
-  color: #6e6a60;
+  color: #868e96;      /* gray-6 */
   cursor: pointer;
   transition: color 0.2s;
 }
 
-.tab-btn:hover { color: #6b8fae; }
+.tab-btn:hover { color: #5c940d; }   /* lime-9 */
 
 .tab-btn.active {
-  color: #43648a;
+  color: #5c940d;
   font-weight: 600;
-  border-bottom-color: #d9a95c;
+  border-bottom-color: #82c91e;       /* lime-6 */
 }
 
 /* 语言切换按钮 */
@@ -75,10 +76,10 @@ body {
   margin-left: auto;
   flex-shrink: 0;
   padding: 4px 12px;
-  border: 1px solid #e3ded2;
+  border: 1px solid #dee2e6;          /* gray-3 */
   border-radius: 4px;
-  background: #fdfcf8;
-  color: #6e6a60;
+  background: #ffffff;
+  color: #495057;                     /* gray-7 */
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -86,7 +87,7 @@ body {
   transition: color 0.2s, border-color 0.2s;
 }
 
-.lang-toggle:hover { color: #6b8fae; border-color: #6b8fae; }
+.lang-toggle:hover { color: #5c940d; border-color: #82c91e; }
 
 /* ---------- 页面主体与双栏面板 ---------- */
 .page {
@@ -106,24 +107,24 @@ body {
 .panel {
   display: flex;
   flex-direction: column;
-  background: #fdfcf8;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(62, 56, 44, 0.06);
+  background: #ffffff;
+  border: 1px solid #e9ecef;          /* gray-2 */
+  border-radius: 6px;
   overflow: hidden;
 }
 
 .panel-input { width: 45%; flex-shrink: 0; }
 
-.panel-result { 
-  flex: 1; 
-  min-width: 0; 
-  background: #f8f5ed; 
+.panel-result {
+  flex: 1;
+  min-width: 0;
+  background: #f8f9fa;                /* gray-0 */
 }
 
 .panel-header {
   padding: 10px 15px;
-  background: #f8f5ed;
-  border-bottom: 1px solid #ebe6da;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
 }
 
 .panel-body { flex: 1; padding: 20px; overflow-y: auto; }
@@ -146,12 +147,12 @@ body {
 .form-group label {
   font-size: 13px;
   font-weight: 700;
-  color: #6e6a60;
+  color: #495057;                     /* gray-7 */
 }
 
 /* 地址标题行右侧的常驻错误提示：输入无效时显示，恢复有效后消失 */
 .field-error {
-  color: #cc6a5c;
+  color: #e03131;                     /* red-7 */
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
@@ -161,18 +162,18 @@ body {
 .text-input {
   width: 100%;
   padding: 8px 12px;
-  border: 1px solid #e3ded2;
+  border: 1px solid #dee2e6;
   border-radius: 4px;
   font-size: 15px;
   font-family: Consolas, Monaco, "Courier New", monospace;
-  color: #43648a;
+  color: #212529;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.text-input:focus { border-color: #6b8fae; box-shadow: 0 0 0 2px rgba(107, 143, 174, 0.22); }
+.text-input:focus { border-color: #82c91e; box-shadow: 0 0 0 2px rgba(130, 201, 30, 0.22); }
 
-.text-input.invalid { border-color: #cc6a5c; box-shadow: 0 0 0 2px rgba(204, 106, 92, 0.15); }
+.text-input.invalid { border-color: #fa5252; box-shadow: 0 0 0 2px rgba(250, 82, 82, 0.15); }
 
 .input-row { display: flex; gap: 8px; }
 
@@ -181,9 +182,9 @@ body {
 /* ---------- 按钮 ---------- */
 .btn {
   appearance: none;
-  border: 1px solid #e3ded2;
-  background: #fdfcf8;
-  color: #6e6a60;
+  border: 1px solid #dee2e6;
+  background: #ffffff;
+  color: #495057;
   border-radius: 4px;
   padding: 6px 14px;
   font-size: 13px;
@@ -191,7 +192,7 @@ body {
   transition: color 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
-.btn:hover { color: #6b8fae; border-color: #6b8fae; background: #f3efe6; }
+.btn:hover { color: #5c940d; border-color: #82c91e; background: #f4fce3; }  /* lime-0 */
 
 /* ---------- 位图掩码编辑器 ---------- */
 .bit-mask {
@@ -213,10 +214,10 @@ body {
   flex: 1 1 0;
   min-width: 0;
   height: 30px;
-  border: 1px solid #e3ded2;
+  border: 1px solid #dee2e6;
   border-radius: 4px;
-  background: #fdfcf8;
-  color: #928d81;
+  background: #ffffff;
+  color: #adb5bd;                     /* gray-5 */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "SimSun", "SimHei", sans-serif;
   font-size: 13px;
   font-weight: 600;
@@ -225,12 +226,12 @@ body {
   transition: color 0.15s, border-color 0.15s, background-color 0.15s;
 }
 
-.bit:hover { border-color: #6b8fae; color: #6b8fae; }
+.bit:hover { border-color: #82c91e; color: #5c940d; }
 
 .bit.on {
-  background: #d9a95c;
-  border-color: #d9a95c;
-  color: #3d3b35;
+  background: #82c91e;
+  border-color: #82c91e;
+  color: #212529;
 }
 
 /* 每 4 位一组的组间间距 */
@@ -272,7 +273,7 @@ body {
   flex-shrink: 0;
   font-size: 13px;
   font-weight: 700;
-  color: #6e6a60;
+  color: #868e96;
   text-align: right;
   margin-top: 2px;
 }
@@ -280,7 +281,7 @@ body {
 .val-main {
   font-size: 15px;
   font-weight: 700;
-  color: #43648a;
+  color: #5c940d;
   font-family: Consolas, Monaco, "Courier New", monospace;
   word-break: break-all;
 }

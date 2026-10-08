@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html-tools · 工具箱</title>
+  <style>
+    /* 色彩基于 Open Color：lime 主色 / gray 中性色 */
+    :root {
+      --lime-0: #f4fce3;
+      --lime-2: #d8f5a2;
+      --lime-6: #82c91e;
+      --lime-9: #5c940d;
+      --gray-0: #f8f9fa;
+      --gray-2: #e9ecef;
+      --gray-3: #dee2e6;
+      --gray-5: #adb5bd;
+      --gray-6: #868e96;
+      --gray-9: #212529;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--gray-9);
+      font: 15px/1.75 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    .page { max-width: 680px; margin: 0 auto; padding: 56px 20px 64px; }
+
+    header { margin-bottom: 8px; }
+    .eyebrow {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--lime-9);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    h1 { font-size: 24px; font-weight: 700; margin: 4px 0 8px; }
+    header p { margin: 0 0 28px; color: var(--gray-6); font-size: 14px; }
+
+    /* 目录式列表，替代卡片网格 */
+    .tools { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--gray-3); }
+    .tools li { border-bottom: 1px solid var(--gray-2); }
+    .tools a {
+      display: grid;
+      grid-template-columns: 2.2em 1fr auto;
+      align-items: baseline;
+      gap: 0 12px;
+      padding: 14px 4px;
+      text-decoration: none;
+      color: inherit;
+      transition: background-color 0.12s;
+    }
+    .tools a:hover { background: var(--gray-0); }
+    .tools a:hover .tool-name { color: var(--lime-9); }
+    .tool-index {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      color: var(--gray-5);
+      align-self: center;
+    }
+    .tools a:hover .tool-index { color: var(--lime-9); }
+    .tool-name { font-size: 15px; font-weight: 600; transition: color 0.12s; }
+    .tool-desc { grid-column: 2; color: var(--gray-6); font-size: 13px; }
+    .tool-path {
+      align-self: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--gray-5);
+      white-space: nowrap;
+    }
+    footer {
+      margin-top: 32px;
+      color: var(--gray-5);
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    @media (max-width: 560px) {
+      .tools a { grid-template-columns: 1.6em 1fr; }
+      .tool-path { grid-column: 2; white-space: normal; }
+      .tool-desc { grid-column: 2; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="eyebrow">html-tools</div>
+      <h1>工具箱</h1>
+      <p>纯静态本地工具集，选择一个工具进入。</p>
+    </header>
+
+    <ul class="tools">
+      <li>
+        <a href="Date-Calculator/index.html">
+          <span class="tool-index">01</span>
+          <span class="tool-name">日期计算器</span>
+          <span class="tool-path">Date-Calculator/</span>
+          <span class="tool-desc">计算两个日期的差值，推算若干天 / 工作日后的日期，支持农历。</span>
+        </a>
+      </li>
+      <li>
+        <a href="crontab-calculator/crontab-calculator.html">
+          <span class="tool-index">02</span>
+          <span class="tool-name">Crontab 执行时间计算器</span>
+          <span class="tool-path">crontab-calculator/</span>
+          <span class="tool-desc">根据 cron 表达式推算未来执行时间，支持图形化生成表达式。</span>
+        </a>
+      </li>
+      <li>
+        <a href="password-generator/dist/password.html">
+          <span class="tool-index">03</span>
+          <span class="tool-name">随机密码生成工具</span>
+          <span class="tool-path">password-generator/dist/</span>
+          <span class="tool-desc">按长度与字符集生成随机密码，并评估密码强度。</span>
+        </a>
+      </li>
+      <li>
+        <a href="subnet-calculator/index.html">
+          <span class="tool-index">04</span>
+          <span class="tool-name">子网计算器</span>
+          <span class="tool-path">subnet-calculator/</span>
+          <span class="tool-desc">IPv4 / IPv6 子网划分与掩码计算，支持中英文切换。</span>
+        </a>
+      </li>
+    </ul>
+
+    <footer>MIT · 纯 HTML / CSS / JS，无构建依赖</footer>
+  </div>
+</body>
+</html>

@@ -101,11 +101,12 @@ function setStyles(element, styles) {
 }
 
 function getToastStyle(type) {
+  // 色彩基于 Open Color：green / orange / red / blue 辅助语义色
   const styles = {
-    success: { color: '#67c23a', backgroundColor: '#f0f9eb', border: '1px solid #c2e7b0' },
-    warning: { color: '#e6a23c', backgroundColor: '#fdf6ec', border: '1px solid #f5dab1' },
-    danger:  { color: '#f56c6c', backgroundColor: '#fef0f0', border: '1px solid #fbc4c4' },
-    info:    { color: '#409eff', backgroundColor: '#ecf5ff', border: '1px solid #b3d8ff' },
+    success: { color: '#2f9e44', backgroundColor: '#ebfbee', border: '1px solid #b2f2bb' },
+    warning: { color: '#e8590c', backgroundColor: '#fff4e6', border: '1px solid #ffd8a8' },
+    danger:  { color: '#e03131', backgroundColor: '#fff5f5', border: '1px solid #ffc9c9' },
+    info:    { color: '#1c7ed6', backgroundColor: '#e7f5ff', border: '1px solid #a5d8ff' },
   };
   return styles[type] || styles.info;
 }

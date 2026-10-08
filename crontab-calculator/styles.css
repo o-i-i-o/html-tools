@@ -1,7 +1,7 @@
 /* ==================================================================
    Crontab 执行时间计算器 - 样式
-   参考「随机密码生成工具」的浅色风格：白底、#409eff 主色、
-   4px 圆角、#dcdfe6 细边框
+   色彩基于 Open Color：lime 主色 / gray 中性色，red、orange 辅助语义色
+   白底、4px 圆角、细边框的扁平工具风
    ================================================================== */
 
 /* 基础样式重置 */
@@ -11,52 +11,51 @@
 
 /* CSS 变量定义 */
 :root {
-    /* 主色 - 蓝色 */
-    --primary-base: #409eff;
-    --primary-hover-base: #66b1ff;
-    --primary-bg-base: #ecf5ff;
-    --primary-border-base: #b3d8ff;
-    --primary-border-light: #c6e2ff;
+    /* 主色 - lime */
+    --primary-base: #5c940d;          /* lime-9 */
+    --primary-hover-base: #66a80f;    /* lime-8 */
+    --primary-bg-base: #f4fce3;       /* lime-0 */
+    --primary-border-base: #d8f5a2;   /* lime-2 */
+    --primary-border-light: #e9fac8;  /* lime-1 */
 
     /* 背景色 */
     --bg-primary: #ffffff;
-    --bg-secondary: #f5f7fa;
+    --bg-secondary: #f8f9fa;          /* gray-0 */
     --bg-tertiary: #ffffff;
     --bg-card: #ffffff;
-    --bg-hover: #f5f7fa;
+    --bg-hover: #f8f9fa;
 
     /* 文字色 */
-    --text-title: #303133;
-    --text-regular: #606266;
-    --text-secondary: #909399;
-    --text-tertiary: #c0c4cc;
-    --text-muted: #606266;
+    --text-title: #212529;            /* gray-9 */
+    --text-regular: #495057;          /* gray-7 */
+    --text-secondary: #868e96;        /* gray-6 */
+    --text-tertiary: #adb5bd;         /* gray-5 */
+    --text-muted: #495057;
 
     /* 边框色 */
-    --border-deep: #dcdfe6;
-    --border-color: #dcdfe6;
-    --border-light: #e4e7ed;
+    --border-deep: #dee2e6;           /* gray-3 */
+    --border-color: #dee2e6;
+    --border-light: #e9ecef;          /* gray-2 */
 
     /* 语义色 */
-    --accent-color: #409eff;
-    --accent-hover: #66b1ff;
-    --accent-light: #409eff;
-    --success-color: #67c23a;
-    --error-color: #f56c6c;
-    --error-hover: #f78989;
-    --error-light: #fef0f0;
-    --warning-color: #e6a23c;
-    --warning-light: #fdf6ec;
+    --accent-color: #5c940d;
+    --accent-hover: #66a80f;
+    --accent-light: #5c940d;
+    --success-color: #2f9e44;         /* green-8 */
+    --error-color: #fa5252;           /* red-6 */
+    --error-hover: #ff6b6b;           /* red-5 */
+    --error-light: #fff5f5;           /* red-0 */
+    --warning-color: #e8590c;         /* orange-8 */
+    --warning-light: #fff4e6;         /* orange-0 */
 
-    /* 字体家族 - 与密码生成工具一致 */
+    /* 字体家族 */
     --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "BlinkMacSystemFont", Oxygen, Helvetica, Arial;
     --font-family-mono: "Courier New", Courier, monospace;
 }
 
 body {
-    color: #333;
+    color: #343a40;
     font-size: 14px;
-    letter-spacing: 0.5px;
     line-height: 1.5;
     font-family: var(--font-family-base);
     background-color: var(--bg-primary);
@@ -88,7 +87,6 @@ textarea {
     border: none;
     color: var(--text-regular);
     font-size: 14px;
-    letter-spacing: 0.5px;
     font-family: inherit;
 }
 
@@ -99,7 +97,7 @@ button {
 
 input::placeholder,
 textarea::placeholder {
-    color: #bbb;
+    color: #adb5bd;
 }
 
 /* ==================================================================
@@ -214,7 +212,7 @@ input[type="number"] {
 
 input[type="text"]:not(:focus):hover,
 input[type="number"]:not(:focus):hover {
-    border-color: #c0c4cc;
+    border-color: #ced4da;
 }
 
 input[type="text"]:focus,
@@ -269,7 +267,7 @@ input[type="number"]:focus {
 .crontab-result {
     background-color: var(--bg-card);
     border: 1px solid var(--border-light);
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 20px;
 }
 
@@ -428,12 +426,6 @@ input[type="number"]:focus {
     text-align: center;
 }
 
-.placeholder-icon {
-    font-size: 40px;
-    margin-bottom: 12px;
-    opacity: 0.5;
-}
-
 .placeholder-text {
     font-size: 13px;
     color: var(--text-secondary);
@@ -484,8 +476,8 @@ input[type="number"]:focus {
 /* 错误信息（由 crontab-error 容器控制显隐） */
 .crontab-error {
     background: var(--error-light);
-    border: 1px solid #fde2e2;
-    border-radius: 4px;
+    border: 1px solid #ffc9c9;
+    border-radius: 6px;
     padding: 12px 16px;
     margin-top: 16px;
 }
@@ -514,7 +506,7 @@ input[type="number"]:focus {
 .doc-panel {
     background: var(--bg-card);
     border: 1px solid var(--border-light);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
 }
 
@@ -701,7 +693,7 @@ input[type="number"]:focus {
     max-width: 450px;
     max-height: 90vh;
     background: #fff;
-    border-radius: 8px;
+    border-radius: 6px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
     overflow: hidden;
     transform: scale(0.95);
@@ -1001,7 +993,7 @@ input[type="number"]:focus {
         max-width: none;
         max-height: calc(100dvh - 16px);
         padding: 16px;
-        border-radius: 8px;
+        border-radius: 6px;
     }
 
     .cron-generator-header {

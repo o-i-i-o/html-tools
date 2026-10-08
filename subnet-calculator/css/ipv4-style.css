@@ -15,27 +15,27 @@
   min-width: 0;
   padding: 8px 4px;
   text-align: center;
-  border: 1px solid #e3ded2;
+  border: 1px solid #dee2e6;          /* gray-3 */
   border-radius: 4px;
   font-size: 15px;
   font-family: Consolas, Monaco, "Courier New", monospace;
-  color: #43648a;
+  color: #212529;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .octet-input:focus {
-  border-color: #6b8fae;
-  box-shadow: 0 0 0 2px rgba(107, 143, 174, 0.22);
+  border-color: #82c91e;              /* lime-6 */
+  box-shadow: 0 0 0 2px rgba(130, 201, 30, 0.22);
 }
 
 .octet-input.invalid {
-  border-color: #cc6a5c;
-  box-shadow: 0 0 0 2px rgba(204, 106, 92, 0.15);
+  border-color: #fa5252;              /* red-6 */
+  box-shadow: 0 0 0 2px rgba(250, 82, 82, 0.15);
 }
 
 .octet-dot {
-  color: #928d81;
+  color: #adb5bd;
   font-size: 16px;
   font-weight: 600;
   user-select: none;
