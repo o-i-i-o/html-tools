@@ -72,8 +72,6 @@
     .lunar { color: var(--muted); margin: 2px 0 0; min-height: 1.6em; }
     .notes { font-size: 0.92rem; color: var(--muted); }
     .notes ul { margin: 0 0 8px; padding-left: 1.2em; }
-    .notes summary { cursor: pointer; color: var(--accent); }
-    .holiday-list { margin-top: 8px; }
   </style>
 </head>
 
@@ -81,28 +79,24 @@
 <main class="page">
   <h1>日期计算器</h1>
 
-  <!-- 一、两个日期相差 -->
+  <!-- 两个日期相差 -->
   <section class="card">
-    <h2>一、两个日期相差多少天</h2>
+    <h2>两个日期相差多少天</h2>
     <form id="diff-form">
       <div class="form-row">
         <label for="diff-start">开始日期</label>
         <input type="date" id="diff-start" min="1901-01-01" max="2099-12-31" required>
-      </div>
-      <div class="form-row">
         <label for="diff-end">结束日期</label>
         <input type="date" id="diff-end" min="1901-01-01" max="2099-12-31" required>
-      </div>
-      <div class="form-row">
         <button type="submit">计算相差</button>
       </div>
       <p class="result" id="diff-result" aria-live="polite"></p>
     </form>
   </section>
 
-  <!-- 二、日期推算 -->
+  <!-- 日期推算 -->
   <section class="card">
-    <h2>二、推算几天后（前）的日期</h2>
+    <h2>推算几天后（前）的日期</h2>
     <form id="add-form">
       <div class="form-row">
         <label for="add-date">基准日期</label>
@@ -121,8 +115,6 @@
           <option value="month">月</option>
         </select>
         <span>的日期</span>
-      </div>
-      <div class="form-row">
         <button type="submit">推算</button>
       </div>
       <p class="result" id="add-result" aria-live="polite"></p>
@@ -139,10 +131,6 @@
       <li>按「月」推算时超出范围的日期自动进位，例如 1 月 31 日往后 1 个月为 3 月 3 日。</li>
       <li>工作日按法定节假日与调休补班计算，当前数据年份 <span id="work-year"></span>，有效范围 <span id="work-range"></span>；计数不含起始日期、含结束日期。</li>
     </ul>
-    <details>
-      <summary>查看放假安排</summary>
-      <div class="holiday-list" id="holiday-list"></div>
-    </details>
   </section>
 </main>
 

@@ -140,7 +140,6 @@ class DateCalculator {
     // 说明区域
     this.workYear = document.getElementById('work-year');
     this.workRange = document.getElementById('work-range');
-    this.holidayList = document.getElementById('holiday-list');
 
     // 工作日数据（以 2026 年为例，按年更新即可）
     this.workdayData = {
@@ -271,22 +270,13 @@ class DateCalculator {
     return count;
   }
 
-  /* ---------- 说明与放假安排 ---------- */
+  /* ---------- 说明 ---------- */
 
   renderHolidayInfo() {
-    const { year, holidays, makeup, range } = this.workdayData;
+    const { year, range } = this.workdayData;
     this.workYear.textContent = year;
     const fmt = (d) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
     this.workRange.textContent = `${fmt(range[0])} 至 ${fmt(range[1])}`;
-
-    let html = '';
-    for (let m = 0; m < 12; m++) {
-      let line = `${m + 1}月：`;
-      if (holidays[m].length) line += `假期 ${holidays[m].join('、')} 日`;
-      if (makeup[m].length) line += `${holidays[m].length ? '；' : ''}调休上班 ${makeup[m].join('、')} 日`;
-      html += `<div>${line}</div>`;
-    }
-    this.holidayList.innerHTML = html;
   }
 
   /* ---------- 工具方法 ---------- */
