@@ -1,0 +1,3514 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Open Color</title>
+    <link rel="shortcut icon" href="/open-color/asset/favicon/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/open-color/asset/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/open-color/asset/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/open-color/asset/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/open-color/asset/favicon/favicon-16x16.png" sizes="16x16" />
+    <meta name="description" content="Color scheme for UI design" />
+    <meta name="application-name" content="Open Color"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/open-color/asset/favicon/mstile-144x144.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@_heeyeun">
+    <meta name="twitter:creator" content="@_heeyeun" />
+    <meta property="og:title" content="Open Color" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yeun.github.io/open-color/" />
+    <meta property="og:description" content="Color scheme for UI design" />
+    <meta property="og:image" content="https://yeun.github.io/open-color/asset/images/og-image.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="screen">
+
+  </head>
+  <body>
+    <div class="navigation">
+      <div class="container">
+        <a class="blog-logo" href="/open-color/"></a>
+        <div class="navbar">
+          <input type="checkbox" id="navbar-toggle">
+          <label for="navbar-toggle" onclick class="navbar-toggle"></label>
+          <ul class="nav-menus-wrap">
+            <li class="nav-menus-group">
+              <a class="menus-title
+                        "
+                 href="/open-color/">Swatches</a>
+            </li>
+            <li class="nav-menus-group">
+              <a class="menus-title
+                        
+                        active
+                        "
+                 href="/open-color/ingredients.html">Ingredients</a>
+            </li>
+            <li class="nav-menus-group">
+              <a class="menus-title
+                        ">Instructions</a>
+              <ul class="nav-menus">
+                <li><a class="nav-menu" href="/open-color/documents.html">Documents</a></li>
+                <li><a class="nav-menu" href="/open-color/gray-color.html">Gray Color</a></li>
+                <li><a class="nav-menu" href="/open-color/chromatic-colors.html">Chromatic Color</a></li>
+              </ul>
+            </li>
+            <li class="nav-menus-group">
+              <button class="menus-title" type="button">Downloads</button>
+              <ul class="nav-menus">
+                <li><a class="nav-menu" href="https://github.com/yeun/open-color/releases/download/v1.9.1/open-color.zip" download>Source code</a></li>
+                <li><a class="nav-menu" href="http://adobe.ly/2cYxrjk" target="blank">Adobe library</a></li>
+                <li><a class="nav-menu" href="/open-color/asset/download/open-color_1.9.1.aco" download>Photoshop swatches</a></li>
+                <li><a class="nav-menu" href="/open-color/asset/download/open-color_1.9.1.ase" download>Illustrator swatches</a></li>
+                <li><a class="nav-menu" href="/open-color/asset/download/open-color_1.9.1.sketchpalette" download>Sketch palette</a></li>
+                <li><a class="nav-menu" href="/open-color/asset/download/open-color_1.9.1.gpl" download>Inkscape swatches</a></li>
+                <li><a class="nav-menu" href="/open-color/asset/download/open-color_1.9.1.clr" download>Mac OS palette</a></li>
+                <li><a class="nav-menu" href="/open-color/asset/download/open-color_1.9.1.code-snippets" download>VS Code Snippets</a></li>
+                <li><a class="nav-menu" href="https://www.figma.com/file/Qj5TvDTLjOBynKQT6995eToz/Open-Color">Figma library ↗️</a></li>
+              </ul>
+            </li>
+            <li class="nav-menus-group"><a class="menus-title menus-github" href="https://github.com/yeun/open-color">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <section class="cover">
+        <div class="cover-content">
+          <h1>
+            Open color is an <br>
+            <span class="no-wrap">open-source</span>
+            <span class="no-wrap">color scheme</span>
+            <div class="sub">Optimized for UI like font, background, border, etc.</div>
+          </h1>
+          <div class="metadata">
+            <div class="version">
+              Version 1.9.1
+            </div>
+            <div class="license">
+              MIT license
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="container">
+      <div class="row">
+  <div class="shortcut-wrap">
+  <ul class="shortcut-menus">
+  
+    <li><a class="shortcut gray" href="#gray">
+      <span class="list-color list-color-gray"></span>gray
+    </a></li>
+  
+    <li><a class="shortcut red" href="#red">
+      <span class="list-color list-color-red"></span>red
+    </a></li>
+  
+    <li><a class="shortcut pink" href="#pink">
+      <span class="list-color list-color-pink"></span>pink
+    </a></li>
+  
+    <li><a class="shortcut grape" href="#grape">
+      <span class="list-color list-color-grape"></span>grape
+    </a></li>
+  
+    <li><a class="shortcut violet" href="#violet">
+      <span class="list-color list-color-violet"></span>violet
+    </a></li>
+  
+    <li><a class="shortcut indigo" href="#indigo">
+      <span class="list-color list-color-indigo"></span>indigo
+    </a></li>
+  
+    <li><a class="shortcut blue" href="#blue">
+      <span class="list-color list-color-blue"></span>blue
+    </a></li>
+  
+    <li><a class="shortcut cyan" href="#cyan">
+      <span class="list-color list-color-cyan"></span>cyan
+    </a></li>
+  
+    <li><a class="shortcut teal" href="#teal">
+      <span class="list-color list-color-teal"></span>teal
+    </a></li>
+  
+    <li><a class="shortcut green" href="#green">
+      <span class="list-color list-color-green"></span>green
+    </a></li>
+  
+    <li><a class="shortcut lime" href="#lime">
+      <span class="list-color list-color-lime"></span>lime
+    </a></li>
+  
+    <li><a class="shortcut yellow" href="#yellow">
+      <span class="list-color list-color-yellow"></span>yellow
+    </a></li>
+  
+    <li><a class="shortcut orange" href="#orange">
+      <span class="list-color list-color-orange"></span>orange
+    </a></li>
+  
+  </ul>
+</div>
+  <section class="ingredient-wrap">
+    
+    <section class="color-tables" id="gray">
+      <h3 class="color-title">
+        gray
+      </h3>
+      <table class="value-table" id="table-gray">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-0"></div>
+                gray 0
+              </td>
+              <td class="rgb rgb-red">248</td>
+              <td class="rgb rgb-green">249</td>
+              <td class="rgb rgb-blue">250</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-1"></div>
+                gray 1
+              </td>
+              <td class="rgb rgb-red">241</td>
+              <td class="rgb rgb-green">243</td>
+              <td class="rgb rgb-blue">245</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-2"></div>
+                gray 2
+              </td>
+              <td class="rgb rgb-red">233</td>
+              <td class="rgb rgb-green">236</td>
+              <td class="rgb rgb-blue">239</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-3"></div>
+                gray 3
+              </td>
+              <td class="rgb rgb-red">222</td>
+              <td class="rgb rgb-green">226</td>
+              <td class="rgb rgb-blue">230</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-4"></div>
+                gray 4
+              </td>
+              <td class="rgb rgb-red">206</td>
+              <td class="rgb rgb-green">212</td>
+              <td class="rgb rgb-blue">218</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-5"></div>
+                gray 5
+              </td>
+              <td class="rgb rgb-red">173</td>
+              <td class="rgb rgb-green">181</td>
+              <td class="rgb rgb-blue">189</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-6"></div>
+                gray 6
+              </td>
+              <td class="rgb rgb-red">134</td>
+              <td class="rgb rgb-green">142</td>
+              <td class="rgb rgb-blue">150</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-7"></div>
+                gray 7
+              </td>
+              <td class="rgb rgb-red">73</td>
+              <td class="rgb rgb-green">80</td>
+              <td class="rgb rgb-blue">87</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-8"></div>
+                gray 8
+              </td>
+              <td class="rgb rgb-red">52</td>
+              <td class="rgb rgb-green">58</td>
+              <td class="rgb rgb-blue">64</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-gray-9"></div>
+                gray 9
+              </td>
+              <td class="rgb rgb-red">33</td>
+              <td class="rgb rgb-green">37</td>
+              <td class="rgb rgb-blue">41</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="red">
+      <h3 class="color-title">
+        red
+      </h3>
+      <table class="value-table" id="table-red">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-0"></div>
+                red 0
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">245</td>
+              <td class="rgb rgb-blue">245</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-1"></div>
+                red 1
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">227</td>
+              <td class="rgb rgb-blue">227</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-2"></div>
+                red 2
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">201</td>
+              <td class="rgb rgb-blue">201</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-3"></div>
+                red 3
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">168</td>
+              <td class="rgb rgb-blue">168</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-4"></div>
+                red 4
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">135</td>
+              <td class="rgb rgb-blue">135</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-5"></div>
+                red 5
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">107</td>
+              <td class="rgb rgb-blue">107</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-6"></div>
+                red 6
+              </td>
+              <td class="rgb rgb-red">250</td>
+              <td class="rgb rgb-green">82</td>
+              <td class="rgb rgb-blue">82</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-7"></div>
+                red 7
+              </td>
+              <td class="rgb rgb-red">240</td>
+              <td class="rgb rgb-green">62</td>
+              <td class="rgb rgb-blue">62</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-8"></div>
+                red 8
+              </td>
+              <td class="rgb rgb-red">224</td>
+              <td class="rgb rgb-green">49</td>
+              <td class="rgb rgb-blue">49</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-red-9"></div>
+                red 9
+              </td>
+              <td class="rgb rgb-red">201</td>
+              <td class="rgb rgb-green">42</td>
+              <td class="rgb rgb-blue">42</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="pink">
+      <h3 class="color-title">
+        pink
+      </h3>
+      <table class="value-table" id="table-pink">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-0"></div>
+                pink 0
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">240</td>
+              <td class="rgb rgb-blue">246</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-1"></div>
+                pink 1
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">222</td>
+              <td class="rgb rgb-blue">235</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-2"></div>
+                pink 2
+              </td>
+              <td class="rgb rgb-red">252</td>
+              <td class="rgb rgb-green">194</td>
+              <td class="rgb rgb-blue">215</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-3"></div>
+                pink 3
+              </td>
+              <td class="rgb rgb-red">250</td>
+              <td class="rgb rgb-green">162</td>
+              <td class="rgb rgb-blue">193</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-4"></div>
+                pink 4
+              </td>
+              <td class="rgb rgb-red">247</td>
+              <td class="rgb rgb-green">131</td>
+              <td class="rgb rgb-blue">172</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-5"></div>
+                pink 5
+              </td>
+              <td class="rgb rgb-red">240</td>
+              <td class="rgb rgb-green">101</td>
+              <td class="rgb rgb-blue">149</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-6"></div>
+                pink 6
+              </td>
+              <td class="rgb rgb-red">230</td>
+              <td class="rgb rgb-green">73</td>
+              <td class="rgb rgb-blue">128</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-7"></div>
+                pink 7
+              </td>
+              <td class="rgb rgb-red">214</td>
+              <td class="rgb rgb-green">51</td>
+              <td class="rgb rgb-blue">108</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-8"></div>
+                pink 8
+              </td>
+              <td class="rgb rgb-red">194</td>
+              <td class="rgb rgb-green">37</td>
+              <td class="rgb rgb-blue">92</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-pink-9"></div>
+                pink 9
+              </td>
+              <td class="rgb rgb-red">166</td>
+              <td class="rgb rgb-green">30</td>
+              <td class="rgb rgb-blue">77</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="grape">
+      <h3 class="color-title">
+        grape
+      </h3>
+      <table class="value-table" id="table-grape">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-0"></div>
+                grape 0
+              </td>
+              <td class="rgb rgb-red">248</td>
+              <td class="rgb rgb-green">240</td>
+              <td class="rgb rgb-blue">252</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-1"></div>
+                grape 1
+              </td>
+              <td class="rgb rgb-red">243</td>
+              <td class="rgb rgb-green">217</td>
+              <td class="rgb rgb-blue">250</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-2"></div>
+                grape 2
+              </td>
+              <td class="rgb rgb-red">238</td>
+              <td class="rgb rgb-green">190</td>
+              <td class="rgb rgb-blue">250</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-3"></div>
+                grape 3
+              </td>
+              <td class="rgb rgb-red">229</td>
+              <td class="rgb rgb-green">153</td>
+              <td class="rgb rgb-blue">247</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-4"></div>
+                grape 4
+              </td>
+              <td class="rgb rgb-red">218</td>
+              <td class="rgb rgb-green">119</td>
+              <td class="rgb rgb-blue">242</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-5"></div>
+                grape 5
+              </td>
+              <td class="rgb rgb-red">204</td>
+              <td class="rgb rgb-green">93</td>
+              <td class="rgb rgb-blue">232</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-6"></div>
+                grape 6
+              </td>
+              <td class="rgb rgb-red">190</td>
+              <td class="rgb rgb-green">75</td>
+              <td class="rgb rgb-blue">219</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-7"></div>
+                grape 7
+              </td>
+              <td class="rgb rgb-red">174</td>
+              <td class="rgb rgb-green">62</td>
+              <td class="rgb rgb-blue">201</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-8"></div>
+                grape 8
+              </td>
+              <td class="rgb rgb-red">156</td>
+              <td class="rgb rgb-green">54</td>
+              <td class="rgb rgb-blue">181</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-grape-9"></div>
+                grape 9
+              </td>
+              <td class="rgb rgb-red">134</td>
+              <td class="rgb rgb-green">46</td>
+              <td class="rgb rgb-blue">156</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="violet">
+      <h3 class="color-title">
+        violet
+      </h3>
+      <table class="value-table" id="table-violet">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-0"></div>
+                violet 0
+              </td>
+              <td class="rgb rgb-red">243</td>
+              <td class="rgb rgb-green">240</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-1"></div>
+                violet 1
+              </td>
+              <td class="rgb rgb-red">229</td>
+              <td class="rgb rgb-green">219</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-2"></div>
+                violet 2
+              </td>
+              <td class="rgb rgb-red">208</td>
+              <td class="rgb rgb-green">191</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-3"></div>
+                violet 3
+              </td>
+              <td class="rgb rgb-red">177</td>
+              <td class="rgb rgb-green">151</td>
+              <td class="rgb rgb-blue">252</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-4"></div>
+                violet 4
+              </td>
+              <td class="rgb rgb-red">151</td>
+              <td class="rgb rgb-green">117</td>
+              <td class="rgb rgb-blue">250</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-5"></div>
+                violet 5
+              </td>
+              <td class="rgb rgb-red">132</td>
+              <td class="rgb rgb-green">94</td>
+              <td class="rgb rgb-blue">247</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-6"></div>
+                violet 6
+              </td>
+              <td class="rgb rgb-red">121</td>
+              <td class="rgb rgb-green">80</td>
+              <td class="rgb rgb-blue">242</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-7"></div>
+                violet 7
+              </td>
+              <td class="rgb rgb-red">112</td>
+              <td class="rgb rgb-green">72</td>
+              <td class="rgb rgb-blue">232</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-8"></div>
+                violet 8
+              </td>
+              <td class="rgb rgb-red">103</td>
+              <td class="rgb rgb-green">65</td>
+              <td class="rgb rgb-blue">217</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-violet-9"></div>
+                violet 9
+              </td>
+              <td class="rgb rgb-red">95</td>
+              <td class="rgb rgb-green">61</td>
+              <td class="rgb rgb-blue">196</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="indigo">
+      <h3 class="color-title">
+        indigo
+      </h3>
+      <table class="value-table" id="table-indigo">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-0"></div>
+                indigo 0
+              </td>
+              <td class="rgb rgb-red">237</td>
+              <td class="rgb rgb-green">242</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-1"></div>
+                indigo 1
+              </td>
+              <td class="rgb rgb-red">219</td>
+              <td class="rgb rgb-green">228</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-2"></div>
+                indigo 2
+              </td>
+              <td class="rgb rgb-red">186</td>
+              <td class="rgb rgb-green">200</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-3"></div>
+                indigo 3
+              </td>
+              <td class="rgb rgb-red">145</td>
+              <td class="rgb rgb-green">167</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-4"></div>
+                indigo 4
+              </td>
+              <td class="rgb rgb-red">116</td>
+              <td class="rgb rgb-green">143</td>
+              <td class="rgb rgb-blue">252</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-5"></div>
+                indigo 5
+              </td>
+              <td class="rgb rgb-red">92</td>
+              <td class="rgb rgb-green">124</td>
+              <td class="rgb rgb-blue">250</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-6"></div>
+                indigo 6
+              </td>
+              <td class="rgb rgb-red">76</td>
+              <td class="rgb rgb-green">110</td>
+              <td class="rgb rgb-blue">245</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-7"></div>
+                indigo 7
+              </td>
+              <td class="rgb rgb-red">66</td>
+              <td class="rgb rgb-green">99</td>
+              <td class="rgb rgb-blue">235</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-8"></div>
+                indigo 8
+              </td>
+              <td class="rgb rgb-red">59</td>
+              <td class="rgb rgb-green">91</td>
+              <td class="rgb rgb-blue">219</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-indigo-9"></div>
+                indigo 9
+              </td>
+              <td class="rgb rgb-red">54</td>
+              <td class="rgb rgb-green">79</td>
+              <td class="rgb rgb-blue">199</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="blue">
+      <h3 class="color-title">
+        blue
+      </h3>
+      <table class="value-table" id="table-blue">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-0"></div>
+                blue 0
+              </td>
+              <td class="rgb rgb-red">231</td>
+              <td class="rgb rgb-green">245</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-1"></div>
+                blue 1
+              </td>
+              <td class="rgb rgb-red">208</td>
+              <td class="rgb rgb-green">235</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-2"></div>
+                blue 2
+              </td>
+              <td class="rgb rgb-red">165</td>
+              <td class="rgb rgb-green">216</td>
+              <td class="rgb rgb-blue">255</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-3"></div>
+                blue 3
+              </td>
+              <td class="rgb rgb-red">116</td>
+              <td class="rgb rgb-green">192</td>
+              <td class="rgb rgb-blue">252</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-4"></div>
+                blue 4
+              </td>
+              <td class="rgb rgb-red">77</td>
+              <td class="rgb rgb-green">171</td>
+              <td class="rgb rgb-blue">247</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-5"></div>
+                blue 5
+              </td>
+              <td class="rgb rgb-red">51</td>
+              <td class="rgb rgb-green">154</td>
+              <td class="rgb rgb-blue">240</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-6"></div>
+                blue 6
+              </td>
+              <td class="rgb rgb-red">34</td>
+              <td class="rgb rgb-green">139</td>
+              <td class="rgb rgb-blue">230</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-7"></div>
+                blue 7
+              </td>
+              <td class="rgb rgb-red">28</td>
+              <td class="rgb rgb-green">126</td>
+              <td class="rgb rgb-blue">214</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-8"></div>
+                blue 8
+              </td>
+              <td class="rgb rgb-red">25</td>
+              <td class="rgb rgb-green">113</td>
+              <td class="rgb rgb-blue">194</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-blue-9"></div>
+                blue 9
+              </td>
+              <td class="rgb rgb-red">24</td>
+              <td class="rgb rgb-green">100</td>
+              <td class="rgb rgb-blue">171</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="cyan">
+      <h3 class="color-title">
+        cyan
+      </h3>
+      <table class="value-table" id="table-cyan">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-0"></div>
+                cyan 0
+              </td>
+              <td class="rgb rgb-red">227</td>
+              <td class="rgb rgb-green">250</td>
+              <td class="rgb rgb-blue">252</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-1"></div>
+                cyan 1
+              </td>
+              <td class="rgb rgb-red">197</td>
+              <td class="rgb rgb-green">246</td>
+              <td class="rgb rgb-blue">250</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-2"></div>
+                cyan 2
+              </td>
+              <td class="rgb rgb-red">153</td>
+              <td class="rgb rgb-green">233</td>
+              <td class="rgb rgb-blue">242</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-3"></div>
+                cyan 3
+              </td>
+              <td class="rgb rgb-red">102</td>
+              <td class="rgb rgb-green">217</td>
+              <td class="rgb rgb-blue">232</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-4"></div>
+                cyan 4
+              </td>
+              <td class="rgb rgb-red">59</td>
+              <td class="rgb rgb-green">201</td>
+              <td class="rgb rgb-blue">219</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-5"></div>
+                cyan 5
+              </td>
+              <td class="rgb rgb-red">34</td>
+              <td class="rgb rgb-green">184</td>
+              <td class="rgb rgb-blue">207</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-6"></div>
+                cyan 6
+              </td>
+              <td class="rgb rgb-red">21</td>
+              <td class="rgb rgb-green">170</td>
+              <td class="rgb rgb-blue">191</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-7"></div>
+                cyan 7
+              </td>
+              <td class="rgb rgb-red">16</td>
+              <td class="rgb rgb-green">152</td>
+              <td class="rgb rgb-blue">173</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-8"></div>
+                cyan 8
+              </td>
+              <td class="rgb rgb-red">12</td>
+              <td class="rgb rgb-green">133</td>
+              <td class="rgb rgb-blue">153</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-cyan-9"></div>
+                cyan 9
+              </td>
+              <td class="rgb rgb-red">11</td>
+              <td class="rgb rgb-green">114</td>
+              <td class="rgb rgb-blue">133</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="teal">
+      <h3 class="color-title">
+        teal
+      </h3>
+      <table class="value-table" id="table-teal">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-0"></div>
+                teal 0
+              </td>
+              <td class="rgb rgb-red">230</td>
+              <td class="rgb rgb-green">252</td>
+              <td class="rgb rgb-blue">245</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-1"></div>
+                teal 1
+              </td>
+              <td class="rgb rgb-red">195</td>
+              <td class="rgb rgb-green">250</td>
+              <td class="rgb rgb-blue">232</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-2"></div>
+                teal 2
+              </td>
+              <td class="rgb rgb-red">150</td>
+              <td class="rgb rgb-green">242</td>
+              <td class="rgb rgb-blue">215</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-3"></div>
+                teal 3
+              </td>
+              <td class="rgb rgb-red">99</td>
+              <td class="rgb rgb-green">230</td>
+              <td class="rgb rgb-blue">190</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-4"></div>
+                teal 4
+              </td>
+              <td class="rgb rgb-red">56</td>
+              <td class="rgb rgb-green">217</td>
+              <td class="rgb rgb-blue">169</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-5"></div>
+                teal 5
+              </td>
+              <td class="rgb rgb-red">32</td>
+              <td class="rgb rgb-green">201</td>
+              <td class="rgb rgb-blue">151</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-6"></div>
+                teal 6
+              </td>
+              <td class="rgb rgb-red">18</td>
+              <td class="rgb rgb-green">184</td>
+              <td class="rgb rgb-blue">134</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-7"></div>
+                teal 7
+              </td>
+              <td class="rgb rgb-red">12</td>
+              <td class="rgb rgb-green">166</td>
+              <td class="rgb rgb-blue">120</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-8"></div>
+                teal 8
+              </td>
+              <td class="rgb rgb-red">9</td>
+              <td class="rgb rgb-green">146</td>
+              <td class="rgb rgb-blue">104</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-teal-9"></div>
+                teal 9
+              </td>
+              <td class="rgb rgb-red">8</td>
+              <td class="rgb rgb-green">127</td>
+              <td class="rgb rgb-blue">91</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="green">
+      <h3 class="color-title">
+        green
+      </h3>
+      <table class="value-table" id="table-green">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-0"></div>
+                green 0
+              </td>
+              <td class="rgb rgb-red">235</td>
+              <td class="rgb rgb-green">251</td>
+              <td class="rgb rgb-blue">238</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-1"></div>
+                green 1
+              </td>
+              <td class="rgb rgb-red">211</td>
+              <td class="rgb rgb-green">249</td>
+              <td class="rgb rgb-blue">216</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-2"></div>
+                green 2
+              </td>
+              <td class="rgb rgb-red">178</td>
+              <td class="rgb rgb-green">242</td>
+              <td class="rgb rgb-blue">187</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-3"></div>
+                green 3
+              </td>
+              <td class="rgb rgb-red">140</td>
+              <td class="rgb rgb-green">233</td>
+              <td class="rgb rgb-blue">154</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-4"></div>
+                green 4
+              </td>
+              <td class="rgb rgb-red">105</td>
+              <td class="rgb rgb-green">219</td>
+              <td class="rgb rgb-blue">124</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-5"></div>
+                green 5
+              </td>
+              <td class="rgb rgb-red">81</td>
+              <td class="rgb rgb-green">207</td>
+              <td class="rgb rgb-blue">102</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-6"></div>
+                green 6
+              </td>
+              <td class="rgb rgb-red">64</td>
+              <td class="rgb rgb-green">192</td>
+              <td class="rgb rgb-blue">87</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-7"></div>
+                green 7
+              </td>
+              <td class="rgb rgb-red">55</td>
+              <td class="rgb rgb-green">178</td>
+              <td class="rgb rgb-blue">77</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-8"></div>
+                green 8
+              </td>
+              <td class="rgb rgb-red">47</td>
+              <td class="rgb rgb-green">158</td>
+              <td class="rgb rgb-blue">68</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-green-9"></div>
+                green 9
+              </td>
+              <td class="rgb rgb-red">43</td>
+              <td class="rgb rgb-green">138</td>
+              <td class="rgb rgb-blue">62</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="lime">
+      <h3 class="color-title">
+        lime
+      </h3>
+      <table class="value-table" id="table-lime">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-0"></div>
+                lime 0
+              </td>
+              <td class="rgb rgb-red">244</td>
+              <td class="rgb rgb-green">252</td>
+              <td class="rgb rgb-blue">227</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-1"></div>
+                lime 1
+              </td>
+              <td class="rgb rgb-red">233</td>
+              <td class="rgb rgb-green">250</td>
+              <td class="rgb rgb-blue">200</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-2"></div>
+                lime 2
+              </td>
+              <td class="rgb rgb-red">216</td>
+              <td class="rgb rgb-green">245</td>
+              <td class="rgb rgb-blue">162</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-3"></div>
+                lime 3
+              </td>
+              <td class="rgb rgb-red">192</td>
+              <td class="rgb rgb-green">235</td>
+              <td class="rgb rgb-blue">117</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-4"></div>
+                lime 4
+              </td>
+              <td class="rgb rgb-red">169</td>
+              <td class="rgb rgb-green">227</td>
+              <td class="rgb rgb-blue">75</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-5"></div>
+                lime 5
+              </td>
+              <td class="rgb rgb-red">148</td>
+              <td class="rgb rgb-green">216</td>
+              <td class="rgb rgb-blue">45</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-6"></div>
+                lime 6
+              </td>
+              <td class="rgb rgb-red">130</td>
+              <td class="rgb rgb-green">201</td>
+              <td class="rgb rgb-blue">30</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-7"></div>
+                lime 7
+              </td>
+              <td class="rgb rgb-red">116</td>
+              <td class="rgb rgb-green">184</td>
+              <td class="rgb rgb-blue">22</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-8"></div>
+                lime 8
+              </td>
+              <td class="rgb rgb-red">102</td>
+              <td class="rgb rgb-green">168</td>
+              <td class="rgb rgb-blue">15</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-lime-9"></div>
+                lime 9
+              </td>
+              <td class="rgb rgb-red">92</td>
+              <td class="rgb rgb-green">148</td>
+              <td class="rgb rgb-blue">13</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="yellow">
+      <h3 class="color-title">
+        yellow
+      </h3>
+      <table class="value-table" id="table-yellow">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-0"></div>
+                yellow 0
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">249</td>
+              <td class="rgb rgb-blue">219</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-1"></div>
+                yellow 1
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">243</td>
+              <td class="rgb rgb-blue">191</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-2"></div>
+                yellow 2
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">236</td>
+              <td class="rgb rgb-blue">153</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-3"></div>
+                yellow 3
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">224</td>
+              <td class="rgb rgb-blue">102</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-4"></div>
+                yellow 4
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">212</td>
+              <td class="rgb rgb-blue">59</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-5"></div>
+                yellow 5
+              </td>
+              <td class="rgb rgb-red">252</td>
+              <td class="rgb rgb-green">196</td>
+              <td class="rgb rgb-blue">25</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-6"></div>
+                yellow 6
+              </td>
+              <td class="rgb rgb-red">250</td>
+              <td class="rgb rgb-green">176</td>
+              <td class="rgb rgb-blue">5</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-7"></div>
+                yellow 7
+              </td>
+              <td class="rgb rgb-red">245</td>
+              <td class="rgb rgb-green">159</td>
+              <td class="rgb rgb-blue">0</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-8"></div>
+                yellow 8
+              </td>
+              <td class="rgb rgb-red">240</td>
+              <td class="rgb rgb-green">140</td>
+              <td class="rgb rgb-blue">0</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-yellow-9"></div>
+                yellow 9
+              </td>
+              <td class="rgb rgb-red">230</td>
+              <td class="rgb rgb-green">119</td>
+              <td class="rgb rgb-blue">0</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="color-tables" id="orange">
+      <h3 class="color-title">
+        orange
+      </h3>
+      <table class="value-table" id="table-orange">
+        <thead>
+          <tr>
+            <th class="level">Name</th>
+            <th class="rgb rgb-red">R</th>
+            <th class="rgb rgb-green">G</th>
+            <th class="rgb rgb-blue">B</th>
+            <th class="rgb rgb-lightness">L</th>
+            <th class="hsl hsl-hue">H</th>
+            <th class="hsl hsl-saturation">S</th>
+            <th class="hsl hsl-value">V</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-0"></div>
+                orange 0
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">244</td>
+              <td class="rgb rgb-blue">230</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-1"></div>
+                orange 1
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">232</td>
+              <td class="rgb rgb-blue">204</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-2"></div>
+                orange 2
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">216</td>
+              <td class="rgb rgb-blue">168</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-3"></div>
+                orange 3
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">192</td>
+              <td class="rgb rgb-blue">120</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-4"></div>
+                orange 4
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">169</td>
+              <td class="rgb rgb-blue">77</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-5"></div>
+                orange 5
+              </td>
+              <td class="rgb rgb-red">255</td>
+              <td class="rgb rgb-green">146</td>
+              <td class="rgb rgb-blue">43</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-6"></div>
+                orange 6
+              </td>
+              <td class="rgb rgb-red">253</td>
+              <td class="rgb rgb-green">126</td>
+              <td class="rgb rgb-blue">20</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-7"></div>
+                orange 7
+              </td>
+              <td class="rgb rgb-red">247</td>
+              <td class="rgb rgb-green">103</td>
+              <td class="rgb rgb-blue">7</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-8"></div>
+                orange 8
+              </td>
+              <td class="rgb rgb-red">232</td>
+              <td class="rgb rgb-green">89</td>
+              <td class="rgb rgb-blue">12</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <tr>
+              <td class="level">
+                <div class="color-preview bg-orange-9"></div>
+                orange 9
+              </td>
+              <td class="rgb rgb-red">217</td>
+              <td class="rgb rgb-green">72</td>
+              <td class="rgb rgb-blue">15</td>
+              <td class="rgb rgb-lightness"></td>
+              <td class="hsl hsl-hue"></td>
+              <td class="hsl hsl-saturation"></td>
+              <td class="hsl hsl-value"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </section>
+    
+  </section>
+</div>
+<script>
+function hsv(r, g, b){
+  r = r/255
+  g = g/255
+  b = b/255
+
+  var max = Math.max(r, g, b)
+  var min = Math.min(r, g, b)
+  var l = (r + g + b) / 3
+  var h, s, v = max
+  var d = max - min
+
+  if (max === 0) {
+    s = 0
+  } else {
+    s = d / max
+  }
+
+  if(max === min){
+    h = 0; // achromatic
+  }else{
+    switch(max){
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break
+      case g: h = (b - r) / d + 2; break
+      case b: h = (r - g) / d + 4; break
+    }
+    h /= 6
+  }
+
+  return [Math.round(h * 360), Math.round(s * 100), Math.round(v * 100), Math.round(l * 100)]
+}
+
+var rows = $('.value-table tbody tr')
+
+rows.each(
+  function (index, element) {
+    var r = $(element).find('td.rgb-red').text().trim()
+    var g = $(element).find('td.rgb-green').text().trim()
+    var b = $(element).find('td.rgb-blue').text().trim()
+    var l = $(element).find('td.rgb-lightness').text().trim()
+
+    var hsl = hsv(r, g, b)
+    $(element).find('td.hsl-hue').text(hsl[0] + '°')
+    $(element).find('td.hsl-saturation').text(hsl[1] + '%')
+    $(element).find('td.hsl-value').text(hsl[2] + '%')
+    $(element).find('td.rgb-lightness').text(hsl[3] + '%')
+  }
+);
+</script>
+    </div>
+  </body>
+</html>
